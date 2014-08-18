@@ -46,28 +46,28 @@
       </div>
 
 
-      <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
-      Suggestion Limit: {{$storage.suggestion_limit}} 
-      <a ng-click="change_suggestion_limit(5)">+</a>/<a ng-click="change_suggestion_limit(-5)">-</a>
+      <div id="controls">
+        <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
+        Suggestion Limit: {{$storage.suggestion_limit}} 
+        <a ng-click="change_suggestion_limit(5)">+</a>/<a ng-click="change_suggestion_limit(-5)">-</a>
+      </div>
 
-      <div id="key_and_hints">
-        <div id="key">
-          <div ng-repeat="(crypt_char, clear_char) in $storage.key" 
-               ng-click="set_highlight(crypt_char)"
-               ng-keydown="set_key_from_event(crypt_char, $event)"
-               contenteditable="true" 
-               ng-focus="set_highlight(crypt_char)"
-               >
-            <span ng-class="{highlight:is_highlighted(crypt_char)}" >
-              {{crypt_char}} - {{get_clearchar(crypt_char)}} ({{freq[crypt_char]}})</span>
+      <div id="key">
+        <div ng-repeat="(crypt_char, clear_char) in $storage.key" 
+             ng-click="set_highlight(crypt_char)"
+             ng-keydown="set_key_from_event(crypt_char, $event)"
+             contenteditable="true" 
+             ng-focus="set_highlight(crypt_char)"
+             >
+          <span ng-class="{highlight:is_highlighted(crypt_char)}" >
+            {{crypt_char}} - {{get_clearchar(crypt_char)}} ({{freq[crypt_char]}})</span>
 
-            <div class="suggestion" ng-show="$storage.show_suggestions && (highlights == crypt_char)">
-              <ul>
-                <li ng-repeat="suggestion in suggestions.by_length[0] | limitTo:$storage.suggestion_limit" >
-                  <a ng-click="take_suggestion(crypt_char,suggestion)">{{suggestion}}</a>
-                </li>
-              </ul>
-            </div>
+          <div class="suggestion" ng-show="$storage.show_suggestions && (highlights == crypt_char)">
+            <ul>
+              <li ng-repeat="suggestion in suggestions.by_length[0] | limitTo:$storage.suggestion_limit" >
+                <a ng-click="take_suggestion(crypt_char,suggestion)">{{suggestion}}</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
