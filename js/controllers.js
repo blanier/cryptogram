@@ -118,7 +118,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
           var html = /<(?:.|\n)*?>/gm;
           var discuss = /DISCUSS$/;
 
-          var s = result.childNodes[0].textContent.replace(html, '').toUpperCase().replace(discuss,"");
+          var s = result.childNodes[0].textContent.replace(html, '').toUpperCase().replace(discuss,"").trim();
 
           if ($scope.$storage.seen.indexOf(s) < 0) {
             $scope.$storage.samples.push(s);
