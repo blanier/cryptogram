@@ -1,0 +1,32 @@
+body {font-family: monospace;}
+
+#clear { 
+  letter-spacing:3px;
+}
+
+#crypto {
+  letter-spacing:3px;
+  display:inline-block;
+}
+
+#key {
+  display:inline-block;
+}
+
+.word_by_count {
+  display:inline-block;
+}
+
+.suggestion {
+  display:inline-block;
+}
+
+.highlight {
+  background:LightYellow;
+}
+
+ul {
+  list-style-type:none;
+  padding: 0px;
+  margin: 0px;
+}
