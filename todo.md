@@ -5,7 +5,6 @@
 [ ] doubled letters
 [ ] contractions
 [ ] get this shit in git/github
-[ ] hint?
 [ ] correct completion indication/progress indicator
 [ ] move puzzle generation to a service
 [ ] highlight hint letters that are consistent with current key settings
@@ -16,11 +15,6 @@
 [ ] Hey... How about some tests
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
-[ ] new puzzle structure
-    - clear text (for hints)
-    - key (for hints)
-    - cryptext (for presentation)
-    - original (for post-solution presentation)
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -44,3 +38,9 @@
 [x] reload is broken after localStorage cleanup (key and hints aren't populating)
 [x] fix individual letter suggestion highlight
 [x] sometimes it seems like a puzzle is repeated.  Explore - change [master c6a6114]
+[X] hint?
+[X] new puzzle structure (simpler implementation REVISIT LATER) 
+    - clear text (for hints)
+    - key (for hints) (OPTED AGAINST THIS)
+    - cryptext (for presentation)
+    - original (for post-solution presentation)
