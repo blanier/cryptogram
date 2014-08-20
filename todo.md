@@ -25,7 +25,6 @@
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
 [ ] it's mistakenly adds a 3-letter word, its.  What should it do? Perhaps the contractions feature is enough.
-[ ] sometimes it seems like a puzzle is repeated.  Explore
 
 ### Are these worth it?
 [ ] ALT-Tab/ALT-Shift-Tab to skip to next/prev unknown character
@@ -44,3 +43,4 @@
 [x] clean up usage of localStorage - 
 [x] reload is broken after localStorage cleanup (key and hints aren't populating)
 [x] fix individual letter suggestion highlight
+[x] sometimes it seems like a puzzle is repeated.  Explore - change [master c6a6114]

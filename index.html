@@ -33,7 +33,6 @@
               ng-focus="set_highlight(c)"
               >{{c}}</span>
       </div>
-      <input id="load" type="button" value="next" ng-click="load_cryptext_hack()" ></input>
 
       <div id="clear" spellcheck="false" >
         <span ng-repeat="c in get_cleartext() track by $index"
@@ -50,6 +49,7 @@
         <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
         <a ng-click="change_suggestion_limit(5)">+</a>/<a ng-click="change_suggestion_limit(-5)">-</a>
+        <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext_hack()" ></input>
       </div>
 
       <div id="key">

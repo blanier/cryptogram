@@ -160,7 +160,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     if ($scope.$storage.samples.length > 0 && $scope.$storage.cryptext == "" ) {
       $scope.reset_key();
       $scope.highlights = "";
-      var clear = $scope.$storage.samples.pop();
+      var clear = $scope.$storage.clear = $scope.$storage.samples.pop();
+
       $scope.$storage.cryptext = $scope.scramble(clear);
 
       // cap the size of $scope.seen, treat it like a fifo
