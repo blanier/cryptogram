@@ -173,7 +173,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       $scope.highlights = "";
       var clear = $scope.$storage.clear = $scope.$storage.samples.pop();
 
-      $scope.$storage.cryptext = $scope.scramble(clear);
+      $scope.force_cryptext_from_clear(clear);
 
       // cap the size of $scope.seen, treat it like a fifo
       while($scope.$storage.seen.length > 500) {
@@ -182,9 +182,14 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       }
       $scope.$storage.seen.push(clear);
 
-      $scope.update_cryptext();
     } 
   };
+
+  $scope.force_cryptext_from_clear = function(clear) {
+      $scope.$storage.cryptext = $scope.scramble(clear);
+      $scope.update_cryptext();
+  }
+
 
   $scope.scramble = function(src) {
     var src_alpha = [];

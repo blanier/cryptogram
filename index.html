@@ -106,9 +106,11 @@
     </div>
 
     <div ng-show="admin">
-      <button ng-click="set_admin(false)">[x]</button> Admin Panel
+      <button ng-click="set_admin(false)">X</button> Admin Panel
       <div ng-repeat="s in $storage.seen">
-        <button ng-click="remove_seen(s)">[x]</button> {{s}}
+        <button ng-click="remove_seen(s)">X</button>
+        <button ng-click="force_cryptext_from_clear(s)">-&gt;</button>
+        {{s}}
       </div>
     </div>
   </body>
