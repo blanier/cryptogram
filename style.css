@@ -18,6 +18,10 @@ body {font-family: monospace;}
   margin-bottom:10px;
 }
 
+#suggestion_limit_controls {
+  border:solid 1px black;
+}
+
 .word_by_count {
   display:inline-block;
   margin:1em;

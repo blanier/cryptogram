@@ -50,7 +50,7 @@
         <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
 
-        <span style="border:solid 1px red">
+        <span id="suggestion_limit_controls">
           <a ng-click="change_suggestion_limit(-50)">&lt;&lt;</a>
           <a ng-click="change_suggestion_limit(-5)">-</a>/<a ng-click="change_suggestion_limit(5)">+</a>
           <a ng-click="change_suggestion_limit(50)">&gt;&gt;</a>
