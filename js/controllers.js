@@ -1,10 +1,15 @@
 var cryptoApp = angular.module('cryptoApp', ['ngStorage']);
 
+cryptoApp.config(function($locationProvider) {
+    $locationProvider.html5Mode(true).hashPrefix('!');
+})
+
 cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$http',
                                     '$window',
                                     '$localStorage',
-                                    function ($scope, $http, $window, $localStorage) {
+                                    '$location',
+                                    function ($scope, $http, $window, $localStorage, $location) {
 
   $scope.storageDefaults = {
     cryptext: "",
@@ -293,6 +298,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   }
   $scope.update_cryptext();
 
+  $scope.$on('$locationChangeSuccess', function(event) {
+      $scope.admin = $location.search().admin;
+  });
 
   $scope.change_suggestion_limit = function(i) {
     var x = $scope.$storage.suggestion_limit;
@@ -311,6 +319,15 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     for (i in key) {
       $scope.set_key(key[i], val[i]);
     }
+  }
+
+  $scope.remove_seen = function(s) {
+    console.log("click:" + s);
+    $scope.$storage.seen.splice($scope.$storage.seen.indexOf(s),1);
+  }
+
+  $scope.set_admin = function(b) {
+    $location.search('admin',b);
   }
 
       

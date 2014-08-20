@@ -49,9 +49,12 @@
       <div id="controls">
         <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
-        <a ng-click="change_suggestion_limit(50)">&lt;&lt;</a>
-        <a ng-click="change_suggestion_limit(5)">+</a>/<a ng-click="change_suggestion_limit(-5)">-</a>
-        <a ng-click="change_suggestion_limit(-50)">&gt;&gt;</a>
+
+        <span style="border:solid 1px red">
+          <a ng-click="change_suggestion_limit(-50)">&lt;&lt;</a>
+          <a ng-click="change_suggestion_limit(-5)">-</a>/<a ng-click="change_suggestion_limit(5)">+</a>
+          <a ng-click="change_suggestion_limit(50)">&gt;&gt;</a>
+        </span>
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext_hack()" ></input>
       </div>
 
@@ -100,6 +103,13 @@
         </div>
       </div>
       <div>Sample Depth: {{ $storage.samples.length }}</div>
+    </div>
+
+    <div ng-show="admin">
+      <button ng-click="set_admin(false)">[x]</button> Admin Panel
+      <div ng-repeat="s in $storage.seen">
+        <button ng-click="remove_seen(s)">[x]</button> {{s}}
+      </div>
     </div>
   </body>
 </html>
