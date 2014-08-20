@@ -297,6 +297,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return c.match(/[A-Z]/)?"true":"false";
   };
 
+  $scope.puzzle_completed = function() {
+    return $scope.$storage.clear == $scope.get_cleartext();
+  }
+
   // force a puzzle to load
   if ($scope.$storage.cryptext == "") {
     $scope.load_cryptext_hack();

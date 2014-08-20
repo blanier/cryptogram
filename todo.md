@@ -5,7 +5,6 @@
 [ ] doubled letters
 [ ] contractions
 [ ] get this shit in git/github
-[ ] correct completion indication/progress indicator
 [ ] move puzzle generation to a service
 [ ] highlight hint letters that are consistent with current key settings
 [ ] sort suggestions by consistency with current key settings
@@ -44,3 +43,4 @@
     - key (for hints) (OPTED AGAINST THIS)
     - cryptext (for presentation)
     - original (for post-solution presentation)
+[x] correct completion indication/progress indicator
