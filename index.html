@@ -31,6 +31,7 @@
               ng-keydown="set_key_from_event(c, $event)"
               contenteditable={{editable(c)}}
               ng-focus="set_highlight(c)"
+              ng-dblclick="give_hint(c)"
               >{{c}}</span>
       </div>
 
@@ -48,7 +49,9 @@
       <div id="controls">
         <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
+        <a ng-click="change_suggestion_limit(50)">&lt;&lt;</a>
         <a ng-click="change_suggestion_limit(5)">+</a>/<a ng-click="change_suggestion_limit(-5)">-</a>
+        <a ng-click="change_suggestion_limit(-50)">&gt;&gt;</a>
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext_hack()" ></input>
       </div>
 

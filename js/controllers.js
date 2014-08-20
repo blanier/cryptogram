@@ -77,6 +77,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     }
   }
 
+  $scope.give_hint = function(s) {
+    for (i in s) {
+      $scope.set_key(s[i], $scope.$storage.clear[$scope.$storage.cryptext.indexOf(s[i])]);
+    }
+  }
+
   $scope.get_clearchar = function (c) {
     if (c.match(/[A-Z]/)) {
       if ($scope.$storage.key[c]) {

@@ -13,6 +13,11 @@ body {font-family: monospace;}
   display:inline-block;
 }
 
+#controls {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
 .word_by_count {
   display:inline-block;
   margin:1em;
