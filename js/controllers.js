@@ -171,7 +171,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     if ($scope.$storage.samples.length > 0 && $scope.$storage.cryptext == "" ) {
       $scope.reset_key();
       $scope.highlights = "";
-      var clear = $scope.$storage.clear = $scope.$storage.samples.pop();
+      var clear = $scope.$storage.samples.pop();
 
       $scope.force_cryptext_from_clear(clear);
 
@@ -186,8 +186,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
   $scope.force_cryptext_from_clear = function(clear) {
-      $scope.$storage.cryptext = $scope.scramble(clear);
-      $scope.update_cryptext();
+    $scope.$storage.clear = clear;
+    $scope.$storage.cryptext = $scope.scramble(clear);
+    $scope.update_cryptext();
   }
 
 
