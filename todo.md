@@ -2,18 +2,17 @@
 ### Active
 [ ] start characters
 [ ] end characters
-[ ] doubled letters
 [ ] contractions
 [ ] get this shit in git/github
 [ ] move puzzle generation to a service
-[ ] highlight hint letters that are consistent with current key settings
-[ ] sort suggestions by consistency with current key settings
-[ ] sort suggestions by regular expresstion matches (i.e. CVV -> TOO, SEE, etc.)
 [ ] suggestion titles? -- Do I need to generalize suggestions a little more?
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
+[ ] fix 1-letter suggestions for new suggestion mechanism
+[ ] add "BS" elimination mechanism for weird words in the list
+[ ] move URLs out to constants for easier mocking
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -44,3 +43,8 @@
     - cryptext (for presentation)
     - original (for post-solution presentation)
 [x] correct completion indication/progress indicator
+[x] pare suggestions by regular expresstion matches (i.e. CVV -> TOO, SEE, etc.)
+[x] sort suggestions by consistency with current key settings
+[x] highlight hint letters that are consistent with current key settings
+[x] doubled letters (implicity with new winnowing mechanism)
+[x] get rid of the update cryptext grossness

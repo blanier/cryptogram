@@ -107,8 +107,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   }
 
   $scope.reset_key = function() {
-    $scope.$storage.key = {};
-    $scope.update_cryptext();
+    angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key)
   }
 
   $scope.set_key_from_event = function( k, e ) {
@@ -215,7 +214,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.load_cryptext_hack = function() {
 
     $scope.$storage.cryptext = "";
-    $scope.update_cryptext();
 
     if ($scope.$storage.samples.length == 0) {
       $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/quotationspage/qotd');
@@ -248,7 +246,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.force_cryptext_from_clear = function(clear) {
     $scope.$storage.clear = clear;
     $scope.$storage.cryptext = $scope.scramble(clear);
-    $scope.update_cryptext();
   }
 
 
@@ -294,30 +291,22 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return rv;
   };
 
-  $scope.update_cryptext = function() {
-    var newKey = {};
+  $scope.$watch ("$storage.cryptext", function() {
+    $scope.$storage.key = {};
     $scope.freq = {};
     $scope.words = {};
 
     $scope.$storage.cryptext = $scope.$storage.cryptext.toUpperCase();
 
-    for (i in $scope.$storage.cryptext) {
-      var c = $scope.$storage.cryptext[i];
-      if ($scope.$storage.key[c]) {
-        $scope.update_cryptext_char(newKey, c, $scope.$storage.key[c]);
-      } else if (c.match(/[A-Z]/)) {
-        $scope.update_cryptext_char(newKey, c, undefined);
+    angular.forEach($scope.$storage.cryptext, function(c) {
+      if (c.match(/[A-Z]/)) {
+        $scope.$storage.key[c] = undefined;
+        $scope.freq[c] = ($scope.freq[c]?$scope.freq[c]:0) + 1;
       }
-    }
-    $scope.$storage.key = newKey;
+    });
 
     $scope.analyze_words();
-  };
-
-  $scope.update_cryptext_char = function (k, cryptext_char, clear_char) {
-    k[cryptext_char] = clear_char;
-    $scope.freq[cryptext_char] = ($scope.freq[cryptext_char]?$scope.freq[cryptext_char]:0) + 1;
-  };
+  });
 
   $scope.analyze_words = function() {
     var words = $scope.$storage.cryptext.replace(/'/g,"").split(/\W/);
@@ -366,7 +355,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   if ($scope.$storage.cryptext == "") {
     $scope.load_cryptext_hack();
   }
-  $scope.update_cryptext();
 
   $scope.$on('$locationChangeSuccess', function(event) {
       $scope.admin = $location.search().admin;
