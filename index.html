@@ -79,11 +79,12 @@
       </div>
 
 
-      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in [ 1, 2, 3, 4 ]">
+      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]">
         <div ng-repeat="word in words | filter:{length:i}:true | orderBy:'-count'" 
              ng-keydown="set_key_from_event('', $event)"
              contenteditable="true"
              ng-focus="set_highlight(word.word)"
+             ng-click="explore_suggestions(word.word, $storage.key)"
              >
 
           <span ng-repeat="c in word.word track by $index"

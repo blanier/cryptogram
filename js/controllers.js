@@ -4,12 +4,72 @@ cryptoApp.config(function($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
 })
 
+cryptoApp.factory('suggestions', ['$http', function($http) {
+  var words = [];
+
+  $http.get("http://www.corsproxy.com/www-01.sil.org/linguistics/wordlists/english/wordlist/wordsEn.txt").
+    success(function(data, status, headers, config) {
+      words = data.toUpperCase().split("\r\n");
+      console.log(words);
+    }).
+    error(function(data, status, headers, config) {
+      console.log("Can't load English words from: " + url);
+      console.log(status);
+      console.log(data);
+    });
+
+  return function(cryptext, key) {
+
+    var captured = {};
+    var captured_count = 1; // because backreferences are 1-based
+
+    // Makre RE from cryptext
+    var re_string = cryptext.split("").reduce(function(prev, cur) {
+
+      // If we know the letter (from the key), just look for it explicitly (and don't capture it)
+      if (key[cur]) {
+        return prev + key[cur] ;
+      }
+
+      // If we have seen this letter before (in this word), refer to the backreference (and don't capture this instance)
+      if (captured[cur] ){
+        return prev+"\\"+captured[cur];
+      }
+
+      // otherwise, this is a letter we haven't seen yet, remember the backreference number and look for any character
+      captured[cur] = captured_count;
+      captured_count++;
+      return prev + "(\\w)";
+    }, "");
+
+    var re = new RegExp("^" + re_string + "$");
+
+    // Scan words for matches
+    var v = [];
+    angular.forEach(key, function(val) { val && v.push(val) });
+
+    var matches = words.reduce( function(prev, cur) {
+      var m = cur.match(re);
+      if (m &&
+          m.every(function(val, i, array) { return array.lastIndexOf(val) == i; }) &&
+          m.every(function(val) { return v.indexOf(val) == -1 })
+         ) {
+        prev.push(cur);
+      }
+      return prev;
+    }, []);
+
+    return matches;
+  }
+}]);
+
 cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$http',
                                     '$window',
                                     '$localStorage',
                                     '$location',
-                                    function ($scope, $http, $window, $localStorage, $location) {
+                                    'suggestions',
+                                    function ($scope, $http, $window, $localStorage, $location, suggestions) {
 
   $scope.storageDefaults = {
     cryptext: "",
@@ -329,6 +389,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     for (i in key) {
       $scope.set_key(key[i], val[i]);
     }
+  }
+
+  $scope.explore_suggestions = function(s, key) {
+    console.log(suggestions(s, key));
   }
 
   $scope.remove_seen = function(s) {
