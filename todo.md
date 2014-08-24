@@ -13,6 +13,9 @@
 [ ] fix 1-letter suggestions for new suggestion mechanism
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] move URLs out to constants for easier mocking
+[ ] refactor hints by length to either a) eliminate unnecessary divs and make enough divs or b) sort by # of suggestions
+[ ] Add I to the word list
+[ ] hints are not generated on page reload (until a key change)
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -48,3 +51,5 @@
 [x] highlight hint letters that are consistent with current key settings
 [x] doubled letters (implicity with new winnowing mechanism)
 [x] get rid of the update cryptext grossness
+[x] page reload got broken.  key is not getting remembered anymore.
+[x] key has unnecessary entries after puzzle load.  it is ok after page load.

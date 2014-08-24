@@ -7,9 +7,9 @@ cryptoApp.config(function($locationProvider) {
 cryptoApp.factory('suggestions', ['$http', function($http) {
   var words = [];
 
-  $http.get("http://www.corsproxy.com/www-01.sil.org/linguistics/wordlists/english/wordlist/wordsEn.txt").
+  $http.get("data/wordsEn.txt").
     success(function(data, status, headers, config) {
-      words = data.toUpperCase().split("\r\n");
+      words = data.toUpperCase().split("\n");
       console.log(words);
     }).
     error(function(data, status, headers, config) {
@@ -50,7 +50,8 @@ cryptoApp.factory('suggestions', ['$http', function($http) {
 
     var matches = words.reduce( function(prev, cur) {
       var m = cur.match(re);
-      if (m &&
+
+      if (m && m.shift() &&
           m.every(function(val, i, array) { return array.lastIndexOf(val) == i; }) &&
           m.every(function(val) { return v.indexOf(val) == -1 })
          ) {
@@ -106,10 +107,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     }
   }
 
-  $scope.reset_key = function() {
-    angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key)
-  }
-
   $scope.set_key_from_event = function( k, e ) {
     var c = String.fromCharCode(e.keyCode).toUpperCase();
     if (c.match(/[A-Z]/)) {
@@ -124,7 +121,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
           e.preventDefault();
 
           if (e.shiftKey) {
-            $scope.reset_key();
+            angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key)
           } else {
             $scope.set_key(k, undefined);
           }
@@ -227,7 +224,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
   $scope.load_handler = function() {
     if ($scope.$storage.samples.length > 0 && $scope.$storage.cryptext == "" ) {
-      $scope.reset_key();
+      $scope.$storage.key = {};
       $scope.highlights = "";
       var clear = $scope.$storage.samples.pop();
 
@@ -244,6 +241,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
   $scope.force_cryptext_from_clear = function(clear) {
+    $scope.$storage.key = {};
     $scope.$storage.clear = clear;
     $scope.$storage.cryptext = $scope.scramble(clear);
   }
@@ -291,8 +289,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return rv;
   };
 
+
   $scope.$watch ("$storage.cryptext", function() {
-    $scope.$storage.key = {};
     $scope.freq = {};
     $scope.words = {};
 
@@ -300,7 +298,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
     angular.forEach($scope.$storage.cryptext, function(c) {
       if (c.match(/[A-Z]/)) {
-        $scope.$storage.key[c] = undefined;
+        if (!($scope.$storage.key.hasOwnProperty(c))) {
+          $scope.$storage.key[c] = undefined;
+        }
         $scope.freq[c] = ($scope.freq[c]?$scope.freq[c]:0) + 1;
       }
     });
@@ -326,8 +326,19 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       return prev;
     }, [{'word':"", 'length':0, 'count':0}]);
 
+    $scope.generate_suggestions();
     console.log($scope.words);
   };
+
+  $scope.generate_suggestions = function() {
+    console.log("GENERATING SUGGESTIONS");
+    angular.forEach($scope.words, function(word) {
+      var s = suggestions(word.word, $scope.$storage.key);
+      $scope.big_suggestions[word.word] = s;
+    });
+  };
+
+  $scope.$watchCollection ("$storage.key", function() { $scope.generate_suggestions()});
 
   $scope.highlights = "";
 
@@ -379,10 +390,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     }
   }
 
-  $scope.explore_suggestions = function(s, key) {
-    console.log(suggestions(s, key));
-  }
-
   $scope.remove_seen = function(s) {
     console.log("click:" + s);
     $scope.$storage.seen.splice($scope.$storage.seen.indexOf(s),1);
@@ -392,7 +399,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     $location.search('admin',b);
   }
 
-      
+  $scope.big_suggestions = {};
+  
   $scope.suggestions =  { 
     by_length: [
       [ // there are no 0-letter suggestions, so I'm overloading this slot

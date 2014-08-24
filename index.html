@@ -79,7 +79,7 @@
       </div>
 
 
-      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]">
+      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]">
         <div ng-repeat="word in words | filter:{length:i}:true | orderBy:'-count'" 
              ng-keydown="set_key_from_event('', $event)"
              contenteditable="true"
@@ -90,13 +90,14 @@
           <span ng-repeat="c in word.word track by $index"
                 ng-class="{highlight:is_highlighted(c)}" 
                 contenteditable="false"
-                >{{c}}</span> - {{word.count}}
+                >{{c}}</span> - {{big_suggestions[word.word].length}}
 
           <div class="suggestion"
                ng-show="$storage.show_suggestions && (highlights == word.word)"
                >
             <ul>
-              <li ng-repeat="suggestion in suggestions.by_length[i] | limitTo:$storage.suggestion_limit">
+              <!-- <li ng-repeat="suggestion in suggestions.by_length[i] | limitTo:$storage.suggestion_limit"> -->
+              <li ng-repeat="suggestion in big_suggestions[word.word] | limitTo:$storage.suggestion_limit">
                 <a ng-click="take_suggestion(word.word,suggestion)">{{suggestion}}</a>
               </li>
             </ul>
