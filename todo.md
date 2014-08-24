@@ -11,7 +11,6 @@
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] move URLs out to constants for easier mocking
 [ ] big hints are not generated on page reload (until a key change or puzzle load)
-[ ] indicate which letters have a value in the key when presenting a suggestion
 [ ] undo/rollback feature
 
 ### observe
@@ -55,3 +54,4 @@
 [x] Add I to the word list
 [x] refactor hints by length to either a) eliminate unnecessary divs and make enough divs or b) sort by # of suggestions
 [x] fix 1-letter suggestions for new suggestion mechanism
+[x] indicate which letters have a value in the key when presenting a suggestion

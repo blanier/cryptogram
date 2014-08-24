@@ -22,6 +22,10 @@ body {font-family: monospace;}
   border:solid 1px black;
 }
 
+.set {
+  text-decoration:underline;
+}
+
 .correct {
   background:palegreen;
 }

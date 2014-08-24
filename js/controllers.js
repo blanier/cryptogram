@@ -344,6 +344,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
   $scope.$watchCollection ("$storage.key", function() { $scope.generate_suggestions()});
 
+  $scope.is_set = function(c) {
+    return $scope.$storage.key[c] != undefined;
+  }
+
   $scope.highlights = "";
 
   $scope.is_highlighted = function(c) {

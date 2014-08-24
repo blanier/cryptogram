@@ -89,7 +89,7 @@
              >
 
           <span ng-repeat="c in word.word track by $index"
-                ng-class="{highlight:is_highlighted(c)}" 
+                ng-class="{highlight:is_highlighted(c), set:is_set(c)}" 
                 contenteditable="false"
                 >{{c}}</span> - {{big_suggestions[word.word].length}}
 
