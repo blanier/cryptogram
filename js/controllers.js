@@ -19,8 +19,7 @@ cryptoApp.factory('suggestions', ['$http', function($http) {
     });
 
   return function(cryptext, key) {
-
-    var captured = {};
+    var captured = {}; // remember what letters are in the backreferences
     var captured_count = 1; // because backreferences are 1-based
 
     // Makre RE from cryptext
@@ -86,9 +85,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.total_chars = 0;
   $scope.freq = {};
   $scope.words = {};
-  $scope.start_char_counts = {};
-  $scope.end_char_counts = {};
-  $scope.dipthong_counts = {};
+  $scope.word_lengths = [];
+  $scope.selection = "all words";
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
@@ -313,6 +311,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     words.sort();
     $scope.words = words.reduce(function(prev, current, i, array) {
 
+      if ($scope.word_lengths.indexOf(current.length) == -1 && current.length!= 0) {
+        $scope.word_lengths.push(current.length);
+      }
+
       var lastItem = prev.pop();
       if (current == lastItem.word) {
         lastItem.count++;
@@ -326,6 +328,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       return prev;
     }, [{'word':"", 'length':0, 'count':0}]);
 
+
+    $scope.word_lengths.sort(function(a, b) { return a - b; });
     $scope.generate_suggestions();
     console.log($scope.words);
   };

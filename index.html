@@ -55,6 +55,7 @@
           <a ng-click="change_suggestion_limit(-5)">-</a>/<a ng-click="change_suggestion_limit(5)">+</a>
           <a ng-click="change_suggestion_limit(50)">&gt;&gt;</a>
         </span>
+        <select ng-model="selection" ng-options="item for item in ['common words', 'all words']"></select>
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext_hack()" ></input>
       </div>
 
@@ -79,7 +80,7 @@
       </div>
 
 
-      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 ]">
+      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in word_lengths">
         <div ng-repeat="word in words | filter:{length:i}:true | orderBy:'-count'" 
              ng-keydown="set_key_from_event('', $event)"
              contenteditable="true"
@@ -94,17 +95,28 @@
 
           <div class="suggestion"
                ng-show="$storage.show_suggestions && (highlights == word.word)"
+               ng-switch="selection"
                >
-            <ul>
-              <!-- <li ng-repeat="suggestion in suggestions.by_length[i] | limitTo:$storage.suggestion_limit"> -->
-              <li ng-repeat="suggestion in big_suggestions[word.word] | limitTo:$storage.suggestion_limit">
-                <a ng-click="take_suggestion(word.word,suggestion)">{{suggestion}}</a>
-              </li>
-            </ul>
+            <div ng-switch-when="common words">
+              <ul>
+                <li ng-repeat="suggestion in suggestions.by_length[i] | limitTo:$storage.suggestion_limit">
+                  <a ng-click="take_suggestion(word.word,suggestion)">{{suggestion}}</a>
+                </li>
+              </ul>
+            </div>
+
+            <div ng-switch-when="all words">
+              <ul>
+                <li ng-repeat="suggestion in big_suggestions[word.word] | limitTo:$storage.suggestion_limit">
+                  <a ng-click="take_suggestion(word.word,suggestion)">{{suggestion}}</a>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </div>
-      <div>Sample Depth: {{ $storage.samples.length }}</div>
+      <div>Sample Depth: {{ $storage.samples.length }}</div> {{selection}}
     </div>
 
     <div ng-show="admin">

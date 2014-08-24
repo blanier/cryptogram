@@ -1,7 +1,5 @@
 
 ### Active
-[ ] start characters
-[ ] end characters
 [ ] contractions
 [ ] get this shit in git/github
 [ ] move puzzle generation to a service
@@ -10,12 +8,11 @@
 [ ] Hey... How about some tests
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
-[ ] fix 1-letter suggestions for new suggestion mechanism
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] move URLs out to constants for easier mocking
-[ ] refactor hints by length to either a) eliminate unnecessary divs and make enough divs or b) sort by # of suggestions
-[ ] Add I to the word list
-[ ] hints are not generated on page reload (until a key change)
+[ ] big hints are not generated on page reload (until a key change or puzzle load)
+[ ] indicate which letters have a value in the key when presenting a suggestion
+[ ] undo/rollback feature
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -24,6 +21,8 @@
 ### Are these worth it?
 [ ] ALT-Tab/ALT-Shift-Tab to skip to next/prev unknown character
 [ ] overwrite mode for typing (type a letter, focus moves to the next letter)
+[ ] start characters
+[ ] end characters
 
 ### DONE
 [x] localStorage for key and cryptext
@@ -53,3 +52,6 @@
 [x] get rid of the update cryptext grossness
 [x] page reload got broken.  key is not getting remembered anymore.
 [x] key has unnecessary entries after puzzle load.  it is ok after page load.
+[x] Add I to the word list
+[x] refactor hints by length to either a) eliminate unnecessary divs and make enough divs or b) sort by # of suggestions
+[x] fix 1-letter suggestions for new suggestion mechanism
