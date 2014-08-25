@@ -10,7 +10,7 @@
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] big hints are not generated on page reload (until a key change or puzzle load)
-[ ] rething suggestions service
+[ ] rethink suggestions service - to make it more watch()able and fix initial hint generation
 [ ] eliminate words that are all numbers
 [ ] turn off highlighting when puzzle is complete
 [ ] don't insert redundant characters in take-hint() 
