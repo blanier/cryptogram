@@ -22,12 +22,21 @@ body {font-family: monospace;}
   border:solid 1px black;
 }
 
-.set {
-  text-decoration:underline;
+#undo {
+  display:inline-block;
+  border:solid 1px black;
 }
 
-.correct {
-  background:palegreen;
+#key_and_hints > * {
+  vertical-align:top;
+}
+
+.undo_invalid {
+  background:red;
+}
+
+.set {
+  text-decoration:underline;
 }
 
 .word_by_count {
@@ -41,6 +50,10 @@ body {font-family: monospace;}
 
 .highlight {
   background:LightYellow;
+}
+
+.correct {
+  background:palegreen;
 }
 
 ul {

@@ -9,9 +9,13 @@
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
-[ ] move URLs out to constants for easier mocking
 [ ] big hints are not generated on page reload (until a key change or puzzle load)
-[ ] undo/rollback feature
+[ ] rething suggestions service
+[ ] eliminate words that are all numbers
+[ ] turn off highlighting when puzzle is complete
+[ ] don't insert redundant characters in take-hint() 
+      - repeated letters in hint word
+      - letters already set in key (if they agree with the hint)
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -22,6 +26,7 @@
 [ ] overwrite mode for typing (type a letter, focus moves to the next letter)
 [ ] start characters
 [ ] end characters
+[ ] move URLs out to constants for easier mocking
 
 ### DONE
 [x] localStorage for key and cryptext
@@ -55,3 +60,4 @@
 [x] refactor hints by length to either a) eliminate unnecessary divs and make enough divs or b) sort by # of suggestions
 [x] fix 1-letter suggestions for new suggestion mechanism
 [x] indicate which letters have a value in the key when presenting a suggestion
+[x] undo/rollback feature

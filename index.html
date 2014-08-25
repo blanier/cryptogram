@@ -59,6 +59,7 @@
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext_hack()" ></input>
       </div>
 
+      <div id="key_and_hints">
       <div id="key">
         <div ng-repeat="(crypt_char, clear_char) in $storage.key" 
              ng-click="set_highlight(crypt_char)"
@@ -116,8 +117,20 @@
           </div>
         </div>
       </div>
-      <div>Sample Depth: {{ $storage.samples.length }}</div> {{selection}}
+      <div id="undo">
+        <ul>
+          <li ng-repeat="move in $storage.moves">
+            <a  ng-click="revert_to($index)" ng-class="{undo_invalid:undo_invalid($index)}">
+              {{move.cryptext}} - {{move.clear}} - {{move.comment}}
+            </a>
+          </li>
+        </ul>
+      </div>
+      </div>
     </div>
+
+    <div>Sample Depth: {{ $storage.samples.length }}</div> 
+    <div>{{selection}}</div>
 
     <div ng-show="admin">
       <button ng-click="set_admin(false)">X</button> Admin Panel

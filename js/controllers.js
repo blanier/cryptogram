@@ -77,7 +77,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     samples: [],
     seen: [],
     show_suggestions: true,
-    suggestion_limit: 5
+    suggestion_limit: 5,
+    moves: [],
+    move_insert_index: 0
   };
 
   $scope.$storage = $localStorage.$default( $scope.storageDefaults ); 
@@ -96,6 +98,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
     // set the key
     $scope.$storage.key[k] = v;
+
+    // and remember for the undo buffer
+    $scope.$storage.moves.splice($scope.$storage.move_insert_index,
+                                 $scope.$storage.moves.length - $scope.$storage.move_insert_index,
+                                 {cryptext:k, clear:v});
+    $scope.$storage.move_insert_index++;
 
     // prevent multiple assignments for same cleartext char
     for (var k1 in $scope.$storage.key) {
@@ -119,7 +127,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
           e.preventDefault();
 
           if (e.shiftKey) {
-            angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key)
+            angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key);
+            $scope.$storage.move_insert_index = 0;
           } else {
             $scope.set_key(k, undefined);
           }
@@ -223,6 +232,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.load_handler = function() {
     if ($scope.$storage.samples.length > 0 && $scope.$storage.cryptext == "" ) {
       $scope.$storage.key = {};
+      $scope.$storage.moves = [];
       $scope.highlights = "";
       var clear = $scope.$storage.samples.pop();
 
@@ -241,9 +251,30 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.force_cryptext_from_clear = function(clear) {
     $scope.$storage.key = {};
     $scope.$storage.clear = clear;
+    $scope.$storage.moves = [];
     $scope.$storage.cryptext = $scope.scramble(clear);
   }
 
+  $scope.undo_invalid = function(i) {
+    return i>=$scope.$storage.move_insert_index;
+  }
+
+  $scope.revert_to = function(i) {
+    console.log("reverting to change " + i);
+
+    var old_moves = $scope.$storage.moves.slice();
+
+    angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key);
+
+    angular.forEach(old_moves, function(v, k) { 
+      if (k<i) { 
+        $scope.set_key(v.cryptext, v.clear); 
+      } 
+    });
+
+    $scope.$storage.moves = old_moves;
+    $scope.$storage.move_insert_index = i;
+  }
 
   $scope.scramble = function(src) {
     var src_alpha = [];
