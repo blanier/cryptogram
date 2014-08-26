@@ -8,7 +8,7 @@
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
-[ ] eliminate words that are all numbers
+[ ] visually highlight words with 1 suggestion and missing letters
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -61,3 +61,4 @@
 [x] big hints are not generated on page reload (until a key change or puzzle load)
 [x] rethink suggestions service - to make it more watch()able and fix initial hint generation (nope, just $broadcast)
 [x] turn off highlighting when puzzle is complete
+[ ] eliminate words that are all numbers

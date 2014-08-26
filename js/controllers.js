@@ -143,6 +143,17 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
         case 9:   // TAB key
           break;
 
+        case 38:  // UP arrow
+          e.preventDefault();
+          $scope.revert_to($scope.$storage.move_insert_index-1);
+          break;
+
+        case 40:  // DOWN arrow
+          e.preventDefault();
+          $scope.revert_to($scope.$storage.move_insert_index+1);
+          break;
+
+
         default:
           e.preventDefault();
           console.log("HANDLE ME?: " + c + "," + e.keyCode);
@@ -266,6 +277,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   }
 
   $scope.revert_to = function(i) {
+   
+    // ignore bogus indices
+    if (i<0 || i>$scope.$storage.moves.length) {
+      return;
+    }
+
     console.log("reverting to change " + i);
 
     var old_moves = $scope.$storage.moves.slice();
@@ -350,6 +367,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
       if ($scope.word_lengths.indexOf(current.length) == -1 && current.length!= 0) {
         $scope.word_lengths.push(current.length);
+      }
+
+      if (current.match(/[\d]+/)) {
+        return prev;
       }
 
       var lastItem = prev.pop();
