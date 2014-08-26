@@ -35,9 +35,9 @@
               >{{c}}</span>
       </div>
 
-      <div id="clear" spellcheck="false" ng-class="{correct:puzzle_completed()}">
+      <div id="clear" spellcheck="false" >
         <span ng-repeat="c in get_cleartext() track by $index"
-              ng-class="{highlight:is_highlighted($storage.cryptext[$index])}" 
+              ng-class="{highlight:is_highlighted($storage.cryptext[$index]),correct:puzzle_completed()}" 
               ng-click="set_highlight($storage.cryptext[$index])"
               ng-keydown="set_key_from_event($storage.cryptext[$index], $event)"
               contenteditable={{editable($storage.cryptext[$index])}}

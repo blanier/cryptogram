@@ -2,7 +2,6 @@
 ### Active
 [ ] contractions
 [ ] get this shit in git/github
-[ ] move puzzle generation to a service
 [ ] suggestion titles? -- Do I need to generalize suggestions a little more?
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
@@ -10,7 +9,6 @@
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] eliminate words that are all numbers
-[ ] turn off highlighting when puzzle is complete
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -22,6 +20,7 @@
 [ ] start characters
 [ ] end characters
 [ ] move URLs out to constants for easier mocking
+[ ] move puzzle generation to a service
 
 ### DONE
 [x] localStorage for key and cryptext
@@ -61,3 +60,4 @@
       - letters already set in key (if they agree with the hint)
 [x] big hints are not generated on page reload (until a key change or puzzle load)
 [x] rethink suggestions service - to make it more watch()able and fix initial hint generation (nope, just $broadcast)
+[x] turn off highlighting when puzzle is complete
