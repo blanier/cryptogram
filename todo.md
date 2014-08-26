@@ -9,8 +9,6 @@
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
-[ ] big hints are not generated on page reload (until a key change or puzzle load)
-[ ] rethink suggestions service - to make it more watch()able and fix initial hint generation
 [ ] eliminate words that are all numbers
 [ ] turn off highlighting when puzzle is complete
 
@@ -61,3 +59,5 @@
 [x] don't insert redundant characters in take-hint() 
       - repeated letters in hint word
       - letters already set in key (if they agree with the hint)
+[x] big hints are not generated on page reload (until a key change or puzzle load)
+[x] rethink suggestions service - to make it more watch()able and fix initial hint generation (nope, just $broadcast)

@@ -4,13 +4,14 @@ cryptoApp.config(function($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
 })
 
-cryptoApp.factory('suggestions', ['$http', function($http) {
+cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootScope) {
   var words = [];
 
   $http.get("data/wordsEn.txt").
     success(function(data, status, headers, config) {
       words = data.toUpperCase().split("\n");
       console.log(words);
+      $rootScope.$broadcast("data:loaded");
     }).
     error(function(data, status, headers, config) {
       console.log("Can't load English words from: " + url);
@@ -378,6 +379,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     });
   };
 
+  $scope.$on("data:loaded", function() { $scope.generate_suggestions()});
   $scope.$watchCollection ("$storage.key", function() { $scope.generate_suggestions()});
 
   $scope.is_set = function(c) {

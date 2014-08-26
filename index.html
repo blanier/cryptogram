@@ -131,6 +131,7 @@
 
     <div>Sample Depth: {{ $storage.samples.length }}</div> 
     <div>{{selection}}</div>
+    <button ng-hide="admin" ng-click="set_admin(true)">+ Admin Panel</button>
 
     <div ng-show="admin">
       <button ng-click="set_admin(false)">X</button> Admin Panel
