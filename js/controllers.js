@@ -96,6 +96,11 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       return;
     }
 
+    // do nothing for redundant requests
+    if ($scope.$storage.key[k] == v) {
+      return;
+    }
+
     // set the key
     $scope.$storage.key[k] = v;
 

@@ -13,9 +13,6 @@
 [ ] rethink suggestions service - to make it more watch()able and fix initial hint generation
 [ ] eliminate words that are all numbers
 [ ] turn off highlighting when puzzle is complete
-[ ] don't insert redundant characters in take-hint() 
-      - repeated letters in hint word
-      - letters already set in key (if they agree with the hint)
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -61,3 +58,6 @@
 [x] fix 1-letter suggestions for new suggestion mechanism
 [x] indicate which letters have a value in the key when presenting a suggestion
 [x] undo/rollback feature
+[x] don't insert redundant characters in take-hint() 
+      - repeated letters in hint word
+      - letters already set in key (if they agree with the hint)
