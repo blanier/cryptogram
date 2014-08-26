@@ -2,7 +2,6 @@
 ### Active
 [ ] contractions
 [ ] get this shit in git/github
-[ ] suggestion titles? -- Do I need to generalize suggestions a little more?
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
 [ ] explore other quote sources
@@ -61,4 +60,5 @@
 [x] big hints are not generated on page reload (until a key change or puzzle load)
 [x] rethink suggestions service - to make it more watch()able and fix initial hint generation (nope, just $broadcast)
 [x] turn off highlighting when puzzle is complete
-[ ] eliminate words that are all numbers
+[x] eliminate words that are all numbers
+[x] suggestion titles? -- Do I need to generalize suggestions a little more?

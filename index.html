@@ -82,6 +82,7 @@
 
 
       <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in word_lengths">
+        {{i}}-letter word(s)
         <div ng-repeat="word in words | filter:{length:i}:true | orderBy:'-count'" 
              ng-keydown="set_key_from_event('', $event)"
              contenteditable="true"
