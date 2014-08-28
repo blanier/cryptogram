@@ -133,8 +133,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
           e.preventDefault();
 
           if (e.shiftKey) {
-            angular.forEach($scope.$storage.key, function(v, k) { this[k] = undefined }, $scope.$storage.key);
-            $scope.$storage.move_insert_index = 0;
+            $scope.revert_to(0);
           } else {
             $scope.set_key(k, undefined);
           }
