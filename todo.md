@@ -7,7 +7,6 @@
 [ ] explore other quote sources
 [ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
-[ ] visually highlight words with 1 suggestion and missing letters
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -62,3 +61,4 @@
 [x] turn off highlighting when puzzle is complete
 [x] eliminate words that are all numbers
 [x] suggestion titles? -- Do I need to generalize suggestions a little more?
+[x] visually highlight words with 1 suggestion and missing letters -- INSTEAD: hide solved words

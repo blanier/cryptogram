@@ -89,6 +89,7 @@
              ng-focus="set_highlight(word.word)"
              ng-click="explore_suggestions(word.word, $storage.key)"
              ng-class="{bogus:(big_suggestions[word.word]==0)}"
+             ng-hide="word_is_solved(word.word)"
              >
 
           <span ng-repeat="c in word.word track by $index"

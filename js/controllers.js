@@ -403,6 +403,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return $scope.$storage.key[c] != undefined;
   }
 
+  $scope.word_is_solved = function(w) {
+    return w.split("").every(function(c) { return $scope.is_set(c) });
+  }
+
   $scope.highlights = "";
 
   $scope.is_highlighted = function(c) {
