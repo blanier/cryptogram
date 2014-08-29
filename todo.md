@@ -1,6 +1,8 @@
 
 ### Active
 [ ] contractions
+[ ] scrolling divs for suggestions
+[ ] move common words out of JSgeneralize suggestions engine to adapt to multiple sources
 [ ] get this shit in git/github
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
