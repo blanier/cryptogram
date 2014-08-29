@@ -2,12 +2,12 @@
 ### Active
 [ ] contractions
 [ ] scrolling divs for suggestions
-[ ] move common words out of JSgeneralize suggestions engine to adapt to multiple sources
-[ ] get this shit in git/github
+[ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
 [ ] explore other quote sources
 [ ] add "BS" elimination mechanism for weird words in the list
+[ ] setup gh-pages branch
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -64,3 +64,4 @@
 [x] suggestion titles? -- Do I need to generalize suggestions a little more?
 [x] visually highlight words with 1 suggestion and missing letters -- INSTEAD: hide solved words
 [x] show unchosen letters somewhere (as hints for key focus, remove values already set in key)
+[x] get this shit in git/github
