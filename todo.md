@@ -5,7 +5,6 @@
 [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 [ ] Hey... How about some tests
 [ ] explore other quote sources
-[ ] show unchosen letters somewhere (perhaps as hints for clear-text focus)
 [ ] add "BS" elimination mechanism for weird words in the list
 
 ### observe
@@ -62,3 +61,4 @@
 [x] eliminate words that are all numbers
 [x] suggestion titles? -- Do I need to generalize suggestions a little more?
 [x] visually highlight words with 1 suggestion and missing letters -- INSTEAD: hide solved words
+[x] show unchosen letters somewhere (as hints for key focus, remove values already set in key)

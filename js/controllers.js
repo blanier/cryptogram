@@ -466,6 +466,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     $location.search('admin',b);
   }
 
+  $scope.key_not_set = function(item) {
+    var found = false;
+    angular.forEach($scope.$storage.key, function(val) { if (val==item) found=true } );
+    return !found;
+  }
+
   $scope.big_suggestions = {};
   
   $scope.suggestions =  { 

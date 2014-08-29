@@ -72,7 +72,7 @@
 
           <div class="suggestion" ng-show="$storage.show_suggestions && (highlights == crypt_char)">
             <ul>
-              <li ng-repeat="suggestion in suggestions.by_length[0] | limitTo:$storage.suggestion_limit" >
+              <li ng-repeat="suggestion in suggestions.by_length[0] | filter:key_not_set | limitTo:$storage.suggestion_limit" >
                 <a ng-click="take_suggestion(crypt_char,suggestion)">{{suggestion}}</a>
               </li>
             </ul>
