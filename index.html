@@ -81,15 +81,14 @@
       </div>
 
 
-      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in word_lengths">
+      <div class="word_by_count" id={{"word_by_count"+i}} ng-repeat="i in word_lengths" ng-show="filtered[i].length">
         {{i}}-letter word(s)
-        <div ng-repeat="word in words | filter:{length:i}:true | orderBy:'-count'" 
+        <div ng-repeat="word in filtered[i] = (words | filter:{length:i}:true | filter:word_is_not_solved | orderBy:'-count')" 
              ng-keydown="set_key_from_event('', $event)"
              contenteditable="true"
              ng-focus="set_highlight(word.word)"
              ng-click="explore_suggestions(word.word, $storage.key)"
              ng-class="{bogus:(big_suggestions[word.word]==0)}"
-             ng-hide="word_is_solved(word.word)"
              >
 
           <span ng-repeat="c in word.word track by $index"

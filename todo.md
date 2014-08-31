@@ -8,6 +8,7 @@
 [ ] explore other quote sources
 [ ] add "BS" elimination mechanism for weird words in the list
 [ ] setup gh-pages branch
+[ ] move key handling to global scope so focus doesn't matter as much
 
 ### observe
 [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -65,3 +66,4 @@
 [x] visually highlight words with 1 suggestion and missing letters -- INSTEAD: hide solved words
 [x] show unchosen letters somewhere (as hints for key focus, remove values already set in key)
 [x] get this shit in git/github
+[x] hide suggestion divs when they become empty

@@ -10,7 +10,7 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
   $http.get("data/wordsEn.txt").
     success(function(data, status, headers, config) {
       words = data.toUpperCase().split("\n");
-      console.log(words);
+      // console.log(words);
       $rootScope.$broadcast("data:loaded");
     }).
     error(function(data, status, headers, config) {
@@ -90,6 +90,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.words = {};
   $scope.word_lengths = [];
   $scope.selection = "all words";
+  $scope.filtered = []; // placeholder for filtered suggestion list counts
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
@@ -404,7 +405,11 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   }
 
   $scope.word_is_solved = function(w) {
-    return w.split("").every(function(c) { return $scope.is_set(c) });
+    return w.word.split("").every(function(c) { return $scope.is_set(c) });
+  }
+
+  $scope.word_is_not_solved = function(w) {
+    return !$scope.word_is_solved(w);
   }
 
   $scope.highlights = "";
