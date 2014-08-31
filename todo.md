@@ -8,6 +8,7 @@
 - [ ] add "BS" elimination mechanism for weird words in the list
 - [ ] setup gh-pages branch
 - [ ] move key handling to global scope so focus doesn't matter as much
+- [ ] remove suggestion limit support/address perf issue thus created
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
