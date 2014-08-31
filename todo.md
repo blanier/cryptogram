@@ -1,7 +1,6 @@
 
 ### Active
 - [ ] contractions
-- [ ] scrolling divs for suggestions
 - [ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
 - [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 - [ ] Hey... How about some tests
@@ -67,3 +66,4 @@
 - [x] show unchosen letters somewhere (as hints for key focus, remove values already set in key)
 - [x] get this shit in git/github
 - [x] hide suggestion divs when they become empty
+- [x] scrolling divs for suggestions

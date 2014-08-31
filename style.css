@@ -46,6 +46,8 @@ body {font-family: monospace;}
 
 .suggestion {
   display:inline-block;
+  max-height:150px;
+  overflow:scroll;
 }
 
 .highlight {
