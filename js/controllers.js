@@ -10,7 +10,6 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
   $http.get("data/wordsEn.txt").
     success(function(data, status, headers, config) {
       words = data.toUpperCase().split("\n");
-      // console.log(words);
       $rootScope.$broadcast("data:loaded");
     }).
     error(function(data, status, headers, config) {
@@ -29,6 +28,10 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
       // If we know the letter (from the key), just look for it explicitly (and don't capture it)
       if (key[cur]) {
         return prev + key[cur] ;
+      }
+
+      if (!cur.match(/[A-Z]/)) {
+        return prev+cur;
       }
 
       // If we have seen this letter before (in this word), refer to the backreference (and don't capture this instance)
@@ -354,11 +357,11 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       }
     });
 
-    $scope.analyze_words();
+    $scope.analyze_words($scope.$storage.cryptext);
   });
 
-  $scope.analyze_words = function() {
-    var words = $scope.$storage.cryptext.replace(/'/g,"").split(/\W/);
+  $scope.analyze_words = function(text) {
+    var words = text.split(/[\s\.\,\;\-:\[\]"]/);
     words.sort();
     $scope.words = words.reduce(function(prev, current, i, array) {
 
@@ -370,7 +373,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
         return prev;
       }
 
-      var lastItem = prev.pop();
+      var lastItem = prev.pop() || {'word':"", 'length':0, 'count':0} ;
       if (current == lastItem.word) {
         lastItem.count++;
         prev.push(lastItem);
@@ -381,16 +384,14 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       }
 
       return prev;
-    }, [{'word':"", 'length':0, 'count':0}]);
+    }, []);
 
 
     $scope.word_lengths.sort(function(a, b) { return a - b; });
     $scope.generate_suggestions();
-    console.log($scope.words);
   };
 
   $scope.generate_suggestions = function() {
-    console.log("GENERATING SUGGESTIONS");
     angular.forEach($scope.words, function(word) {
       var s = suggestions(word.word, $scope.$storage.key);
       $scope.big_suggestions[word.word] = s;
@@ -404,8 +405,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return $scope.$storage.key[c] != undefined;
   }
 
-  $scope.word_is_solved = function(w) {
-    return w.word.split("").every(function(c) { return $scope.is_set(c) });
+  $scope.word_is_solved = function(w) { 
+    return w.word.split("").every(function(c) { return c.match(/[A-Z]/) ? $scope.is_set(c) : true });
   }
 
   $scope.word_is_not_solved = function(w) {

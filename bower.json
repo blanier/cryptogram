@@ -24,5 +24,8 @@
   "dependencies": {
     "angularjs": "~1.2.22",
     "ngstorage": "~0.3.0"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.23"
   }
 }

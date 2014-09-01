@@ -1,9 +1,7 @@
 
 ### Active
-- [ ] contractions
 - [ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
 - [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
-- [ ] Hey... How about some tests
 - [ ] explore other quote sources
 - [ ] add "BS" elimination mechanism for weird words in the list
 - [ ] setup gh-pages branch
@@ -68,3 +66,5 @@
 - [x] get this shit in git/github
 - [x] hide suggestion divs when they become empty
 - [x] scrolling divs for suggestions
+- [x] Hey... How about some tests
+- [x] contractions
