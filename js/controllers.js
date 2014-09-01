@@ -399,6 +399,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.generate_suggestions = function() {
     angular.forEach($scope.words, function(word) {
       var s = suggestions(word.word, $scope.$storage.key);
+      word.number_of_suggestions = s.length;
       $scope.big_suggestions[word.word] = s;
     });
   };

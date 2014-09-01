@@ -7,7 +7,8 @@
 - [ ] setup gh-pages branch
 - [ ] move key handling to global scope so focus doesn't matter as much
 - [ ] remove suggestion limit support/address perf issue thus created
-- [ ] present words sorted by number of suggestions, not number of letters
+- [ ] attempt reload of puzzles every few hours
+- [ ] auto-solve mode
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -69,3 +70,4 @@
 - [x] scrolling divs for suggestions
 - [x] Hey... How about some tests
 - [x] contractions
+- [x] present words sorted by number of suggestions, not number of letters

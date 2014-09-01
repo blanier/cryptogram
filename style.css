@@ -44,10 +44,17 @@ body {font-family: monospace;}
   margin-right:1em;
 }
 
+.word_list {
+  display:inline-block;
+  margin-right:1em;
+  text-align: right;
+}
+
 .suggestion {
   display:inline-block;
   max-height:150px;
   overflow:scroll;
+  background:AliceBlue;
 }
 
 .highlight {
