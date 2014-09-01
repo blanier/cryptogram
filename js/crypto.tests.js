@@ -55,4 +55,10 @@ describe('AnalyzeWords', function(){
     expect(scope.words[4].word).toBe("IT");
   });
 
+  it("handle single-quoted strings correctly", function() {
+    scope.analyze_words("'GKFAYFRG AIXKBEKW,'");
+    expect(scope.words[1].word).toBe("GKFAYFRG");
+    expect(scope.words[2].word).toBe("AIXKBEKW");
+  });
+
 });

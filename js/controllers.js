@@ -365,6 +365,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     words.sort();
     $scope.words = words.reduce(function(prev, current, i, array) {
 
+      // handle leading and trailing single-quotes
+      current = current.replace(/^'/,"");
+      current = current.replace(/'$/,"");
+
       if ($scope.word_lengths.indexOf(current.length) == -1 && current.length!= 0) {
         $scope.word_lengths.push(current.length);
       }
@@ -372,6 +376,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       if (current.match(/[\d]+/)) {
         return prev;
       }
+
 
       var lastItem = prev.pop() || {'word':"", 'length':0, 'count':0} ;
       if (current == lastItem.word) {
