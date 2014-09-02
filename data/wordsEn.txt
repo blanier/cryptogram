@@ -28493,7 +28493,6 @@ dominos
 dominus
 doms
 don
-don't
 dona
 donald
 donate
@@ -106844,8 +106843,6 @@ waywardly
 waywardness
 wayworn
 we
-we're
-we've
 weak
 weaken
 weakened
@@ -109240,7 +109237,6 @@ yorker
 yorkers
 yosemite
 you
-you'd
 young
 younger
 youngers
