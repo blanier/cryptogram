@@ -72,8 +72,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$window',
                                     '$localStorage',
                                     '$location',
+                                    '$interval',
                                     'suggestions',
-                                    function ($scope, $http, $window, $localStorage, $location, suggestions) {
+                                    function ($scope, $http, $window, $localStorage, $location, $interval, suggestions) {
 
   $scope.storageDefaults = {
     cryptext: "",
@@ -235,17 +236,16 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       });
   }
 
-  $scope.load_cryptext_hack = function() {
+  $scope.push_slurps = function() {
+    $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/quotationspage/qotd');
+    $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/quotationspage/mqotd');
+    $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/brainyquote/QUOTEBR');
+    $scope.slurp('http://www.corsproxy.com/www.thefreedictionary.com/_/WoD/rss.aspx?type=quote');
+  }
 
+  $scope.load_cryptext = function() {
     $scope.$storage.cryptext = "";
-
-    if ($scope.$storage.samples.length == 0) {
-      $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/quotationspage/qotd');
-      $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/quotationspage/mqotd');
-      $scope.slurp('http://www.corsproxy.com/feeds.feedburner.com/brainyquote/QUOTEBR');
-      $scope.slurp('http://www.corsproxy.com/www.thefreedictionary.com/_/WoD/rss.aspx?type=quote');
-    }
-
+    $scope.push_slurps();
     $scope.load_handler();
   }
 
@@ -441,10 +441,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     return $scope.$storage.clear == $scope.get_cleartext();
   }
 
-  // force a puzzle to load
-  if ($scope.$storage.cryptext == "") {
-    $scope.load_cryptext_hack();
-  }
+  // force a puzzle to load, and poll for updates
+  $scope.push_slurps();
+  $scope.intervalPromise = $interval($scope.push_slurps, 4*60*60*1000);
+  $scope.$on('$destroy', function () { $interval.cancel(intervalPromise); });
 
   $scope.$on('$locationChangeSuccess', function(event) {
       $scope.admin = $location.search().admin;
