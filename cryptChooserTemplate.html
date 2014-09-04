@@ -1,0 +1,11 @@
+<div class="chooserContainer">
+  <div class="chooserItemContainer" ng-repeat="C in src track by $index" ng-class="{highlight:is_highlighted(c)}" >
+    <div class="chooserHeader">{{header}}</div>
+    <div class="chooserSrc">{{C}}</div>
+    <div class="chooserSeperator">{{seperator}}</div>
+    <div class="chooserDst">{{ C>="A" && C<="Z" ? (key[C]||"_") : C }}</div>
+    <div class="chooserFooter">{{footer}}</div>
+    <div class="chooserSuggestion" ng-transclude ng-show="show_dialog"></div>
+  </div>
+
+</div>

@@ -67,6 +67,42 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
   }
 }]);
 
+cryptoApp.directive('cryptChooser', function() {
+  function link(scope, element, attrs) {
+    if (scope.src[0] >= "A" && scope.src[0] <= "Z") {
+      element[0].tabIndex = 0;
+    }
+
+    element.on('focus', function(event) {
+      console.log("FOCUS");
+      scope.show_dialog=true;
+    });
+
+    element.on('blur', function(event) {
+      console.log("BLUR");
+      scope.show_dialog=false;
+    });
+
+  };
+
+  return {
+    restrict: 'E',
+    replace: true,
+    transclude: true,
+    scope: {
+      src: '=',
+      key: '=',
+      header: '=',
+      seperator: '=',
+      footer: '=',
+      suggestions: '=',
+    },
+    templateUrl: 'cryptChooserTemplate.html',
+    link: link
+  };
+});
+
+
 cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$http',
                                     '$window',
@@ -215,7 +251,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
           var s = result.childNodes[0].textContent.replace(html, '').toUpperCase().replace(discuss,"").trim();
 
-          if ($scope.$storage.seen.indexOf(s) < 0) {
+          if ($scope.$storage.seen.indexOf(s) < 0 && $scope.$storage.samples.indexOf(s) < 0 ) {
             $scope.$storage.samples.push(s);
           } else {
             // console.log("Discarding: " + s);
@@ -470,7 +506,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   }
 
   $scope.remove_seen = function(s) {
-    console.log("click:" + s);
     $scope.$storage.seen.splice($scope.$storage.seen.indexOf(s),1);
   }
 

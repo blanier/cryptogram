@@ -1,17 +1,17 @@
 body {font-family: monospace;}
 
-#clear { 
-  letter-spacing:3px;
-}
-
-#crypto {
-  letter-spacing:3px;
-  display:inline-block;
-}
-
 #key {
   display:inline-block;
 }
+
+#keyeeee {
+  display:inline-block;
+}
+
+.key1 div {
+  display:inline-block;
+}
+
 
 #controls {
   margin-top:10px;
@@ -39,6 +39,17 @@ body {font-family: monospace;}
   text-decoration:underline;
 }
 
+.chooserContainer {
+  display:inline-block;
+  min-width:.75em;
+  margin-bottom:8px;
+}
+
+.chooserItemContainer {
+  display:inline-block;
+  min-width:.75em;
+}
+
 .word_by_count {
   display:inline-block;
   margin-right:1em;
@@ -48,6 +59,12 @@ body {font-family: monospace;}
   display:inline-block;
   margin-right:1em;
   text-align: right;
+}
+
+.chooserSuggestion {
+  max-height:150px;
+  overflow:scroll;
+  background:AliceBlue;
 }
 
 .suggestion {
@@ -61,16 +78,22 @@ body {font-family: monospace;}
   background:LightYellow;
 }
 
-.correct {
+.correct .chooserDst {
   background:palegreen;
 }
 
 .bogus {
-  border:solid 1px red;
+  border:solid 3px red;
 }
 
 ul {
   list-style-type:none;
   padding: 0px;
   margin: 0px;
+}
+
+.key1.chooserContainer {
+  display:block; 
+  margin-bottom:0px;
+  width: 90px;
 }

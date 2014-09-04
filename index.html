@@ -25,27 +25,20 @@
 
     <div ng-hide='loading()'>
       <div id="crypto" spellcheck="false">
-        <span ng-repeat="c in $storage.cryptext track by $index" 
-              ng-class="{highlight:is_highlighted(c)}" 
-              ng-click="set_highlight(c)"
-              ng-keydown="set_key_from_event(c, $event)"
-              contenteditable={{editable(c)}}
-              ng-focus="set_highlight(c)"
-              ng-dblclick="give_hint(c)"
-              >{{c}}</span>
+        <crypt-chooser
+          ng-repeat="c in $storage.cryptext track by $index"
+          src="c" 
+          key="$storage.key" 
+          ng-class="{highlight:is_highlighted(c), correct:puzzle_completed()}" 
+          ng-click="set_highlight(c)"
+          ng-dblclick="give_hint(c)"
+          ng-keydown="set_key_from_event(c, $event)"
+          ng-focus="set_highlight(c)"
+          >
+        </crypt-chooser>
       </div>
 
-      <div id="clear" spellcheck="false" >
-        <span ng-repeat="c in get_cleartext() track by $index"
-              ng-class="{highlight:is_highlighted($storage.cryptext[$index]),correct:puzzle_completed()}" 
-              ng-click="set_highlight($storage.cryptext[$index])"
-              ng-keydown="set_key_from_event($storage.cryptext[$index], $event)"
-              contenteditable={{editable($storage.cryptext[$index])}}
-              ng-focus="set_highlight($storage.cryptext[$index])"
-              >{{c}}</span>
-      </div>
-
-
+      <hr/>
       <div id="controls">
         <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
@@ -58,26 +51,30 @@
         <select ng-model="selection" ng-options="item for item in ['common words', 'all words']"></select>
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext()" ></input>
       </div>
+      <hr/>
 
       <div id="key_and_hints">
-        <div id="key">
-          <div ng-repeat="(crypt_char, clear_char) in $storage.key" 
-               ng-click="set_highlight(crypt_char)"
-               ng-keydown="set_key_from_event(crypt_char, $event)"
-               contenteditable="true" 
-               ng-focus="set_highlight(crypt_char)"
-               >
-            <span ng-class="{highlight:is_highlighted(crypt_char)}" >
-              {{crypt_char}} - {{get_clearchar(crypt_char)}} ({{freq[crypt_char]}})</span>
 
-            <div class="suggestion" ng-show="$storage.show_suggestions && (highlights == crypt_char)">
+        <div id="key">
+          <crypt-chooser
+            ng-repeat="(c,d) in $storage.key"
+            src="c" 
+            key="$storage.key" 
+            ng-class="{highlight:is_highlighted(c), correct:puzzle_completed()}" 
+            ng-click="set_highlight(c)"
+            ng-dblclick="give_hint(c)"
+            ng-keydown="set_key_from_event(c, $event)"
+            ng-focus="set_highlight(c)"
+            seperator="'-'"
+            footer="'('+freq[c]+')'"
+            class="key1"
+            >
               <ul>
                 <li ng-repeat="suggestion in suggestions.by_length[0] | filter:key_not_set | limitTo:$storage.suggestion_limit" >
-                  <a ng-click="take_suggestion(crypt_char,suggestion)">{{suggestion}}</a>
+                  <a ng-click="take_suggestion(c,suggestion)">{{suggestion}}</a>
                 </li>
               </ul>
-            </div>
-          </div>
+          </crypt-chooser>
         </div>
 
         <div class="word_list">

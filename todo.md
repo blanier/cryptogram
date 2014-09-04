@@ -1,7 +1,6 @@
 
 ### Active
 - [ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
-- [ ] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
 - [ ] explore other quote sources
 - [ ] add "BS" elimination mechanism for weird words in the list
 - [ ] setup gh-pages branch
@@ -10,6 +9,11 @@
 - [ ] auto-solve mode
 - [ ] directive to present cryptext and cleartext for a single character (stacked and side-by-side)
 - [ ] refactor presentation to use UI.bootstrap
+- [ ] add a method to choose common characters from suggestions.  e.g. if the suggestions are "they're" and "they've", then T, H, E and Y can all be set.
+- [ ] looks like there's a tabIndex bug.  Sometimes, the wrong div's have tabIndex=0. Explore.
+      - seems to only happen after "next puzzle"
+      - refresh fixes it
+      - transition through an empty cryptext "fixes" it
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -73,3 +77,4 @@
 - [x] contractions
 - [x] present words sorted by number of suggestions, not number of letters
 - [x] attempt reload of puzzles every few hours
+- [x] single-letter (A/I) collision with overall letter frequency.  Both divs appear when 1-letter-word is selected
