@@ -50,6 +50,8 @@
         </span>
         <select ng-model="selection" ng-options="item for item in ['common words', 'all words']"></select>
         <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext()" ></input>
+        <input id="prune" type="button" value="Eliminate the Obvious" ng-click="take_simple_suggestions()" ></input>
+        <input type="checkbox" ng-model="$storage.auto_eliminate">Automatically choose obvious suggestions</input>
       </div>
       <hr/>
 
@@ -78,7 +80,7 @@
         </div>
 
         <div class="word_list">
-          <div ng-repeat="word in filtered[i] = (words | filter:word_is_not_solved | orderBy:'number_of_suggestions')" 
+          <div ng-repeat="word in filtered[$index] = (words | filter:word_is_not_solved | orderBy:'number_of_suggestions')" 
                ng-keydown="set_key_from_event('', $event)"
                contenteditable="true"
                ng-focus="set_highlight(word.word)"

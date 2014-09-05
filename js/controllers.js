@@ -5,11 +5,17 @@ cryptoApp.config(function($locationProvider) {
 })
 
 cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootScope) {
-  var words = [];
+  var words_by_length = {};
 
   $http.get("data/wordsEn.txt").
     success(function(data, status, headers, config) {
-      words = data.toUpperCase().split("\n");
+      var words = data.toUpperCase().split("\n");
+
+      words.map(function(val) {
+        var l = val.length;
+        var bucket = words_by_length[l] || (words_by_length[l] = [])
+        bucket.push(val);
+      });
       $rootScope.$broadcast("data:loaded");
     }).
     error(function(data, status, headers, config) {
@@ -21,6 +27,7 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
   return function(cryptext, key) {
     var captured = {}; // remember what letters are in the backreferences
     var captured_count = 1; // because backreferences are 1-based
+    var l = cryptext.length;
 
     // Makre RE from cryptext
     var re_string = cryptext.split("").reduce(function(prev, cur) {
@@ -34,12 +41,14 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
         return prev+cur;
       }
 
-      // If we have seen this letter before (in this word), refer to the backreference (and don't capture this instance)
+      // If we have seen this letter before (in this word), refer to the backreference 
+      // (and don't capture this instance)
       if (captured[cur] ){
         return prev+"\\"+captured[cur];
       }
 
-      // otherwise, this is a letter we haven't seen yet, remember the backreference number and look for any character
+      // otherwise, this is a letter we haven't seen yet, remember the backreference
+      // number and look for any character
       captured[cur] = captured_count;
       captured_count++;
       return prev + "(\\w)";
@@ -51,7 +60,8 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
     var v = [];
     angular.forEach(key, function(val) { val && v.push(val) });
 
-    var matches = words.reduce( function(prev, cur) {
+    //var matches = words.reduce( function(prev, cur) {
+    var matches = (words_by_length[l] || []).reduce( function(prev, cur) {
       var m = cur.match(re);
 
       if (m && m.shift() &&
@@ -95,7 +105,6 @@ cryptoApp.directive('cryptChooser', function() {
       header: '=',
       seperator: '=',
       footer: '=',
-      suggestions: '=',
     },
     templateUrl: 'cryptChooserTemplate.html',
     link: link
@@ -110,7 +119,8 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$location',
                                     '$interval',
                                     'suggestions',
-                                    function ($scope, $http, $window, $localStorage, $location, $interval, suggestions) {
+                                    function ($scope, $http, $window, $localStorage,
+                                              $location, $interval, suggestions) {
 
   $scope.storageDefaults = {
     cryptext: "",
@@ -119,6 +129,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     seen: [],
     show_suggestions: true,
     suggestion_limit: 5,
+    auto_eliminate: false,
     moves: [],
     move_insert_index: 0
   };
@@ -441,7 +452,13 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
   $scope.$on("data:loaded", function() { $scope.generate_suggestions()});
-  $scope.$watchCollection ("$storage.key", function() { $scope.generate_suggestions()});
+  $scope.$watchCollection ("$storage.key", function() {
+    $scope.generate_suggestions();
+
+    if ($scope.$storage.auto_eliminate) {
+      $scope.take_simple_suggestions();
+    }
+  });
 
   $scope.is_set = function(c) {
     return $scope.$storage.key[c] != undefined;
@@ -496,6 +513,19 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
     $scope.$storage.suggestion_limit = x;
   }
+
+  $scope.take_simple_suggestions = function() {
+
+    while($scope.words.reduce(function (count, w) {
+      if (w.number_of_suggestions==1 && $scope.word_is_not_solved(w)) {
+        $scope.take_suggestion(w.word, $scope.big_suggestions[w.word][0]);
+        return count+1;
+      }
+      return count;
+    }, 0)) {
+      $scope.generate_suggestions();
+    }
+  };
 
   $scope.take_suggestion = function(key, val) {
     console.log("setting " + key + " to " + val);
