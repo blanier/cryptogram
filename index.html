@@ -21,7 +21,7 @@
       </div>
       <div ng-show='pending_slurps == 0'>
         [Descending Trumpet Sound] Wah, wah, wahhhhhhh... No more puzzles for a while
-        <input id="load" type="button" value="Try Again" ng-click="load_cryptext()" ></input>
+        <button id="load" class="btn btn-default" ng-click="load_cryptext()" >Try Again!</button>
       </div>
     </div>
 
@@ -50,8 +50,8 @@
           <a ng-click="change_suggestion_limit(-5)">-</a>/<a ng-click="change_suggestion_limit(5)">+</a>
           <a ng-click="change_suggestion_limit(50)">&gt;&gt;</a>
         </span>
-        <input id="load" type="button" value="Next Puzzle" ng-click="load_cryptext()" ></input>
-        <input id="prune" type="button" value="Eliminate the Obvious" ng-click="take_simple_suggestions()" ></input>
+        <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
+        <button id="prune" ng-click="take_simple_suggestions()" >Eliminate the Obvious</button>
         <input type="checkbox" ng-model="$storage.auto_eliminate">Automatically choose obvious suggestions</input>
       </div>
       <hr/>
@@ -62,6 +62,7 @@
             <accordion-group ng-repeat="(c,d) in $storage.key"
                              ng-dblclick="give_hint(c)"
                              tabIndex=0
+                             ng-focus="set_highlight(c)"
                              >
               <accordion-heading>{{c}} - {{(d||'_')}} ({{freq[c]}})</accordion-heading>
               <a ng-repeat="suggestion in suggestions.by_length[0] | filter:key_not_set"
@@ -79,6 +80,7 @@
                              ng-dblclick="give_hint(word.word)"
                              ng-class="{bogus:(big_suggestions[word.word]==0)}"
                              tabIndex=0
+                             ng-focus="set_highlight(word.word)"
                              >
                <a ng-repeat="suggestion in big_suggestions[word.word] | limitTo:$storage.suggestion_limit"
                   ng-click="take_suggestion(word.word,suggestion)">
@@ -88,7 +90,7 @@
           </accordion>
         </div>
 
-        <div id="undo">
+        <div id="undo" ng-show="$storage.moves.length">
           <ul>
             <li ng-repeat="move in $storage.moves">
               <a  ng-click="revert_to($index)" ng-class="{undo_invalid:undo_invalid($index)}">
@@ -102,13 +104,13 @@
 
     <div>Sample Depth: {{ $storage.samples.length }}</div> 
     <div>{{selection}}</div>
-    <button ng-hide="admin" ng-click="set_admin(true)">+ Admin Panel</button>
+    <button ng-hide="admin" class="btn btn-success"  ng-click="set_admin(true)">+ Admin Panel</button>
 
     <div ng-show="admin">
-      <button ng-click="set_admin(false)">X</button> Admin Panel
+      <button class="btn btn-danger" ng-click="set_admin(false)">X</button> Admin Panel
       <div ng-repeat="s in $storage.seen">
-        <button ng-click="remove_seen(s)">X</button>
-        <button ng-click="force_cryptext_from_clear(s)">-&gt;</button>
+        <button class="btn btn-danger" ng-click="remove_seen(s)">X</button>
+        <button class="btn btn-success" ng-click="force_cryptext_from_clear(s)">-&gt;</button>
         {{s}}
       </div>
     </div>
