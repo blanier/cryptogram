@@ -144,7 +144,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     key: {},
     samples: [],
     seen: [],
-    suggestion_limit: 5,
     auto_eliminate: false,
     moves: [],
     move_insert_index: 0
@@ -460,12 +459,27 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
   $scope.generate_suggestions = function() {
+    $scope.pages = {};
+
     angular.forEach($scope.words, function(word) {
       var s = suggestions(word.word, $scope.$storage.key);
       word.number_of_suggestions = s.length;
       $scope.big_suggestions[word.word] = s;
+
+      $scope.pages[word.word] = { current_page: 1, total_items: s.length, items_per_page: 50, data: [] };
+      $scope.page_changed(word.word);
     });
   };
+
+  $scope.pages = {};
+
+  $scope.page_changed = function(arg) {
+    var page = $scope.pages[arg].current_page - 1;
+    var count = $scope.pages[arg].items_per_page;
+    var begin = page*count;
+    var end = begin+count;
+    $scope.pages[arg].data = $scope.big_suggestions[arg].slice(page*count, (page*count) + count);
+  }
 
   $scope.$on("data:loaded", function() { $scope.generate_suggestions()});
   $scope.$watchCollection ("$storage.key", function() {
@@ -518,17 +532,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.$on('$locationChangeSuccess', function(event) {
       $scope.admin = $location.search().admin;
   });
-
-  $scope.change_suggestion_limit = function(i) {
-    var x = $scope.$storage.suggestion_limit;
-
-    x += i;
-
-    if (x<5) { x=5; }
-    if (x>50) { x=50; }
-
-    $scope.$storage.suggestion_limit = x;
-  }
 
   $scope.take_simple_suggestions = function() {
 
