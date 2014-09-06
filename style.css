@@ -1,17 +1,5 @@
 body {font-family: monospace;}
 
-#key {
-  display:inline-block;
-}
-
-#keyeeee {
-  display:inline-block;
-}
-
-.key1 div {
-  display:inline-block;
-}
-
 
 #controls {
   margin-top:10px;
@@ -22,18 +10,44 @@ body {font-family: monospace;}
   border:solid 1px black;
 }
 
+#load {
+  margin-left: 1em;
+}
+
+
 #undo {
   display:inline-block;
   border:solid 1px black;
 }
 
+.undo_invalid {
+  background:red;
+}
+
+
+
 #key_and_hints > * {
   vertical-align:top;
 }
 
-.undo_invalid {
-  background:red;
+#key {
+  width:10%;
+  display:inline-block;
 }
+
+#words {
+  max-width:15%;
+  display:inline-block;
+}
+
+#words .panel-heading {
+  text-align: right;
+}
+
+.panel-heading {
+  padding: 4px;
+}
+
 
 .set {
   text-decoration:underline;
@@ -50,30 +64,6 @@ body {font-family: monospace;}
   min-width:.75em;
 }
 
-.word_by_count {
-  display:inline-block;
-  margin-right:1em;
-}
-
-.word_list {
-  display:inline-block;
-  margin-right:1em;
-  text-align: right;
-}
-
-.chooserSuggestion {
-  max-height:150px;
-  overflow:scroll;
-  background:AliceBlue;
-}
-
-.suggestion {
-  display:inline-block;
-  max-height:150px;
-  overflow:scroll;
-  background:AliceBlue;
-}
-
 .highlight {
   background:LightYellow;
 }
@@ -88,12 +78,6 @@ body {font-family: monospace;}
 
 ul {
   list-style-type:none;
-  padding: 0px;
+  padding: 4px;
   margin: 0px;
-}
-
-.key1.chooserContainer {
-  display:block; 
-  margin-bottom:0px;
-  width: 90px;
 }

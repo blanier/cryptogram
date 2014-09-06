@@ -1,4 +1,4 @@
-var cryptoApp = angular.module('cryptoApp', ['ngStorage']);
+var cryptoApp = angular.module('cryptoApp', ['ngStorage', 'ui.bootstrap']);
 
 cryptoApp.config(function($locationProvider) {
     $locationProvider.html5Mode(true).hashPrefix('!');
