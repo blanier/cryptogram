@@ -49,9 +49,9 @@
           <a ng-click="change_suggestion_limit(-5)">-</a>/<a ng-click="change_suggestion_limit(5)">+</a>
           <a ng-click="change_suggestion_limit(50)">&gt;&gt;</a>
         </span>
-        <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
         <button id="prune" ng-click="take_simple_suggestions()" >Eliminate the Obvious</button>
         <input type="checkbox" ng-model="$storage.auto_eliminate">Automatically choose obvious suggestions</input>
+        <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
       </div>
       <hr/>
 

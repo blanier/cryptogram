@@ -10,7 +10,6 @@
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
-- [ ] it's mistakenly adds a 3-letter word, its.  What should it do? Perhaps the contractions feature is enough.
 
 ### Are these worth it?
 - [ ] ALT-Tab/ALT-Shift-Tab to skip to next/prev unknown character
@@ -79,3 +78,4 @@
 - [x] bootstrap.ui -- accordian integration
 - [x] refactor presentation to use UI.bootstrap
 - [x] add a method to choose common characters from suggestions.  e.g. if the suggestions are "they're" and "they've", then T, H, E and Y can all be set.
+- [x] it's mistakenly adds a 3-letter word, its.  What should it do? Perhaps the contractions feature is enough.

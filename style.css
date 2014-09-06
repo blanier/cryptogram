@@ -8,12 +8,8 @@ body {font-family: monospace;}
 
 #suggestion_limit_controls {
   border:solid 1px black;
+  margin-right: 1em;
 }
-
-#load {
-  margin-left: 1em;
-}
-
 
 #undo {
   display:inline-block;
