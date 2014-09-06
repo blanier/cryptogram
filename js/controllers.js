@@ -432,7 +432,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
         return prev;
       }
 
-
       var lastItem = prev.pop() || {'word':"", 'length':0, 'count':0} ;
       if (current == lastItem.word) {
         lastItem.count++;
@@ -505,10 +504,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     } else {
       $scope.highlights="";
     }
-  };
-
-  $scope.editable = function(c) {
-    return c.match(/[A-Z]/)?"true":"false";
   };
 
   $scope.puzzle_completed = function() {
