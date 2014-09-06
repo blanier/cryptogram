@@ -155,7 +155,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.freq = {};
   $scope.words = {};
   $scope.word_lengths = [];
-  $scope.selection = "all words";
   $scope.filtered = []; // placeholder for filtered suggestion list counts
 
   $scope.set_key = function( k, v ) {
