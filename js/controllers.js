@@ -73,6 +73,23 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
       return prev;
     }, []);
 
+    // look for common letters
+    if (matches.length > 1) {
+      var common = "";
+      (matches[0]||"").split("").map(function(val,index) {
+        if (matches.every(function(val2) { return (val == val2[index]) && (! key[cryptext[index]] )  })) {
+          common += val;
+        } else {
+          common += "_";
+        }
+      });
+
+      if (/[^_']/.test(common)) {
+        console.log("--",cryptext,"--",common);
+        matches.push(common);
+      }
+    }
+
     return matches;
   }
 }]);
@@ -127,7 +144,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     key: {},
     samples: [],
     seen: [],
-    show_suggestions: true,
     suggestion_limit: 5,
     auto_eliminate: false,
     moves: [],
@@ -145,7 +161,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
-    if (!k.match(/[A-Z]/)) {
+    if (!k.match(/[A-Z]/) || !v.match(/[A-Z]/)) {
       return;
     }
 

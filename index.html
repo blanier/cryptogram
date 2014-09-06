@@ -3,7 +3,7 @@
 
   <head>
     <title>Cryptogram</title>
-    <script src="bower_components/angularjs/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
     <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
     <script src="js/controllers.js"></script>
@@ -42,7 +42,6 @@
 
       <hr/>
       <div id="controls">
-        <input type="checkbox" ng-model="$storage.show_suggestions">Show Suggestions</input>
         Suggestion Limit: {{$storage.suggestion_limit}} 
 
         <span id="suggestion_limit_controls">

@@ -1,11 +1,8 @@
 
 ### Active
-- [ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
 - [ ] add "BS" elimination mechanism for weird words in the list
 - [ ] setup gh-pages branch
 - [ ] remove suggestion limit support/address perf issue thus created
-- [ ] refactor presentation to use UI.bootstrap
-- [ ] add a method to choose common characters from suggestions.  e.g. if the suggestions are "they're" and "they've", then T, H, E and Y can all be set.
 - [ ] looks like there's a tabIndex bug.  Sometimes, the wrong div's have tabIndex=0. Explore.
       - seems to only happen after "next puzzle"
       - refresh fixes it
@@ -24,6 +21,7 @@
 - [ ] move puzzle generation to a service
 - [ ] move key handling to global scope so focus doesn't matter as much
 - [ ] explore other quote sources
+- [ ] move common words out of JS - generalize suggestions engine to adapt to multiple sources
 
 ### DONE
 - [x] localStorage for key and cryptext
@@ -79,3 +77,5 @@
 - [x] auto-solve mode
 - [x] directive to present cryptext and cleartext for a single character (stacked and side-by-side)
 - [x] bootstrap.ui -- accordian integration
+- [x] refactor presentation to use UI.bootstrap
+- [x] add a method to choose common characters from suggestions.  e.g. if the suggestions are "they're" and "they've", then T, H, E and Y can all be set.
