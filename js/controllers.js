@@ -154,7 +154,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.total_chars = 0;
   $scope.freq = {};
   $scope.words = {};
-  $scope.word_lengths = [];
   $scope.filtered = []; // placeholder for filtered suggestion list counts
 
   $scope.set_key = function( k, v ) {
@@ -328,7 +327,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     $scope.$storage.key = {};
     $scope.$storage.moves = [];
     $scope.highlights = "";
-    $scope.word_lengths = [];
     $scope.$storage.clear = clear;
     $scope.$storage.cryptext = $scope.scramble(clear);
   }
@@ -430,10 +428,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       current = current.replace(/^'/,"");
       current = current.replace(/'$/,"");
 
-      if ($scope.word_lengths.indexOf(current.length) == -1 && current.length!= 0) {
-        $scope.word_lengths.push(current.length);
-      }
-
       if (current.match(/[\d]+/)) {
         return prev;
       }
@@ -452,8 +446,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
       return prev;
     }, []);
 
-
-    $scope.word_lengths.sort(function(a, b) { return a - b; });
     $scope.generate_suggestions();
   };
 
