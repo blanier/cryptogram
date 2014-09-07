@@ -6,11 +6,6 @@ body {font-family: monospace;}
   margin-bottom:5px;
 }
 
-#suggestion_limit_controls {
-  border:solid 1px black;
-  margin-right: 1em;
-}
-
 #undo {
   display:inline-block;
   border:solid 1px black;

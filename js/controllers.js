@@ -471,14 +471,17 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     $scope.pages[arg].data = $scope.big_suggestions[arg].slice(page*count, (page*count) + count);
   }
 
-  $scope.$on("data:loaded", function() { $scope.generate_suggestions()});
-  $scope.$watchCollection ("$storage.key", function() {
+  $scope.update = function() {
     $scope.generate_suggestions();
 
     if ($scope.$storage.auto_eliminate) {
       $scope.take_simple_suggestions();
     }
-  });
+  };
+
+  $scope.$on("data:loaded", $scope.update);
+  $scope.$watchCollection ("$storage.key", $scope.update);
+  $scope.$watch("$storage.auto_eliminate", $scope.update);
 
   $scope.is_set = function(c) {
     return $scope.$storage.key[c] != undefined;

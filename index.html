@@ -43,8 +43,7 @@
       <hr/>
       <div id="controls">
         </span>
-        <button id="prune" ng-click="take_simple_suggestions()" >Eliminate the Obvious</button>
-        <input type="checkbox" ng-model="$storage.auto_eliminate">Automatically choose obvious suggestions</input>
+        <input type="checkbox" ng-model="$storage.auto_eliminate"> Automatically choose obvious suggestions</input>
         <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
       </div>
       <hr/>
@@ -96,7 +95,7 @@
           <ul>
             <li ng-repeat="move in $storage.moves">
               <a  ng-click="revert_to($index)" ng-class="{undo_invalid:undo_invalid($index)}">
-                {{move.cryptext}} - {{move.clear || "_"}} - {{move.comment}}
+                {{move.cryptext}} - {{move.clear || "_"}} <span ng-show="move.comment"> - {{move.comment}} </span>
               </a>
             </li>
           </ul>
