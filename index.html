@@ -78,6 +78,7 @@
                  ng-click="take_suggestion(word.word,suggestion)">
                 {{suggestion}}
               </a>
+              <div>
               <pagination total-items="pages[word.word].total_items"
                           class="pagination-sm" boundary-links="true"
                           ng-model="pages[word.word].current_page" ng-change="page_changed(word.word)"
@@ -86,7 +87,7 @@
                           max-size="5" items-per-page="pages[word.word].items_per_page"
                           ng-show="big_suggestions[word.word].length > pages[word.word].items_per_page"
                           ></pagination>
-                          {{current_page}}
+              </div>
             </accordion-group>
           </accordion>
         </div>

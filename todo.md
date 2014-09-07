@@ -7,6 +7,7 @@
       - refresh fixes it
       - transition through an empty cryptext "fixes" it
       - link function isn't called for all nodes
+- [ ] key not getting cleared out
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -81,3 +82,4 @@
 - [x] add a method to choose common characters from suggestions.  e.g. if the suggestions are "they're" and "they've", then T, H, E and Y can all be set.
 - [x] it's mistakenly adds a 3-letter word, its.  What should it do? Perhaps the contractions feature is enough.
 - [x] remove suggestion limit support/address perf issue thus created
+- [x] word ending in ! allows! into word

@@ -31,6 +31,10 @@ body {font-family: monospace;}
   display:inline-block;
 }
 
+#key .panel-heading {
+  text-align: center;
+}
+
 #words .panel-heading {
   text-align: right;
 }
