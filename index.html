@@ -67,7 +67,7 @@
 
         <div id="words">
           <accordion close-others="true">
-            <accordion-group ng-repeat="word in filtered[$index] = (words | filter:word_is_not_solved | orderBy:'number_of_suggestions')" 
+            <accordion-group ng-repeat="word in words | filter:word_is_not_solved | orderBy:'number_of_suggestions'" 
                              heading="{{ word.word + ' (' + word.number_of_suggestions + ')'}}"
                              ng-dblclick="give_hint(word.word)"
                              ng-class="{bogus:(big_suggestions[word.word]==0)}"

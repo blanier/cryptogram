@@ -154,7 +154,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.total_chars = 0;
   $scope.freq = {};
   $scope.words = {};
-  $scope.filtered = []; // placeholder for filtered suggestion list counts
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
