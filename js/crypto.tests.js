@@ -61,4 +61,13 @@ describe('AnalyzeWords', function(){
     expect(scope.words[2].word).toBe("AIXKBEKW");
   });
 
+  it("handle words ending with various punctuation correctly", function() {
+    scope.analyze_words("HELLO! YOU, SUCK? (MAYBE) #TESTING");
+    expect(scope.words[1].word).toBe("HELLO");
+    expect(scope.words[2].word).toBe("MAYBE");
+    expect(scope.words[3].word).toBe("SUCK");
+    expect(scope.words[4].word).toBe("TESTING");
+    expect(scope.words[5].word).toBe("YOU");
+  });
+
 });

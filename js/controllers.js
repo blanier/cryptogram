@@ -406,7 +406,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   });
 
   $scope.analyze_words = function(text) {
-    var words = text.split(/[\s\.\,\;\-:\[\]"]/);
+    var words = text.split(/[\s\.,;\-:\[\]!\?"\(\)#]/);
     words.sort();
     $scope.words = words.reduce(function(prev, current, i, array) {
 
