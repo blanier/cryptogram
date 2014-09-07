@@ -99,17 +99,6 @@ cryptoApp.directive('cryptChooser', function() {
     if (scope.src[0] >= "A" && scope.src[0] <= "Z") {
       element[0].tabIndex = 0;
     }
-
-    element.on('focus', function(event) {
-      console.log("FOCUS");
-      scope.show_dialog=true;
-    });
-
-    element.on('blur', function(event) {
-      console.log("BLUR");
-      scope.show_dialog=false;
-    });
-
   };
 
   return {
@@ -119,9 +108,6 @@ cryptoApp.directive('cryptChooser', function() {
     scope: {
       src: '=',
       key: '=',
-      header: '=',
-      seperator: '=',
-      footer: '=',
     },
     templateUrl: 'cryptChooserTemplate.html',
     link: link
@@ -157,7 +143,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
-    if (!k.match(/[A-Z]/) || !v.match(/[A-Z]/)) {
+    if (!k.match(/[A-Z]/) || (v && !v.match(/[A-Z]/))) {
       return;
     }
 
