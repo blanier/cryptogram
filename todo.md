@@ -1,10 +1,12 @@
 
 ### Active
 - [ ] setup gh-pages branch
+- [ ] scrape http://www.brainyquote.com/
 - [ ] looks like there's a tabIndex bug.  Sometimes, the wrong div's have tabIndex=0. Explore.
-      - seems to only happen after "next puzzle"
+      - seems to only happen after "next puzzle" from main UI or "->" from admin panel
       - refresh fixes it
       - transition through an empty cryptext "fixes" it
+      - link function isn't called for all nodes
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.

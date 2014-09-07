@@ -73,7 +73,8 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
       return prev;
     }, []);
 
-    // look for common letters
+    // look for suggestion groups that have a common letter or letters.  For example, if a suggestion
+    // groups contains only "THEY'RE" and "THEY'VE", then "T", "H", "E" and "Y" can be set
     if (matches.length > 1) {
       var common = "";
       (matches[0]||"").split("").map(function(val,index) {
