@@ -46,7 +46,7 @@
         </span>
         <input type="checkbox" ng-model="$storage.auto_eliminate"> Automatically choose obvious suggestions</input>
         <button id="self_service_on" class="btn" ng-click="$storage.self_service=true" >Enter one of your own</button>
-        <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
+        <button id="load" class="btn" ng-click="load_cryptext()" >Next Puzzle</button>
       </div>
       <hr/>
       <div ng-show="$storage.self_service">
