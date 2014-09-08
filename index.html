@@ -21,6 +21,7 @@
       </div>
       <div ng-show='pending_slurps == 0'>
         <a href="http://www.sadtrombone.com/?play=true" target="_blank">[Descending Trumpet Sound] Wah, wah, wahhhhhhh...</a> No more puzzles for a while
+        <button id="self_service_on" class="btn" ng-click="$storage.cryptext='OVERWRITE ME';$storage.self_service=true" >Enter one of your own</button>
         <button id="load" class="btn btn-default" ng-click="load_cryptext()" >Try Again!</button>
       </div>
     </div>
@@ -44,9 +45,19 @@
       <div id="controls">
         </span>
         <input type="checkbox" ng-model="$storage.auto_eliminate"> Automatically choose obvious suggestions</input>
+        <button id="self_service_on" class="btn" ng-click="$storage.self_service=true" >Enter one of your own</button>
         <button id="load" ng-click="load_cryptext()" >Next Puzzle</button>
       </div>
       <hr/>
+      <div ng-show="$storage.self_service">
+        <hr>
+        <textarea id="self_servie_text" ng-model="$storage.cryptext" spellcheck="false"></textarea> <br>
+        <button id="self_service_off"
+          class="btn" ng-click="$storage.self_service=false"
+          >Done!</button>
+        <hr>
+      </div>
+
 
       <div id="key_and_hints">
         <div id="key">

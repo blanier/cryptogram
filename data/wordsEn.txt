@@ -51667,6 +51667,7 @@ joyrode
 joys
 joystick
 joysticks
+jr
 juan
 juans
 jubilant
@@ -91524,6 +91525,7 @@ squooshed
 squooshes
 squooshing
 squushing
+sr
 sri
 stab
 stabbed
