@@ -15,6 +15,10 @@ body {font-family: monospace;}
   background:red;
 }
 
+#self_service_text {
+  width: 80%;
+  height: 5em;
+}
 
 
 #key_and_hints > * {
