@@ -6,11 +6,12 @@
       - refresh fixes it
       - transition through an empty cryptext "fixes" it
       - link function isn't called for all nodes
--[ ] "it is always one's virtues and not one's vices that precipitate one into disaster" auto-completes incorrectly
+- [ ] "it is always one's virtues and not one's vices that precipitate one into disaster" auto-completes incorrectly
+- [ ] Duplicate puzzles are being presented
+- [ ] key not getting cleared out on "Next Puzzle"
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
-- [ ] key not getting cleared out
 
 ### Are these worth it?
 - [ ] ALT-Tab/ALT-Shift-Tab to skip to next/prev unknown character

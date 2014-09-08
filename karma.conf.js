@@ -15,9 +15,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/**/angular.js',
+      'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js',
       'bower_components/**/angular-mocks.js',
-      'bower_components/**/ngstorage.js',
+      'lib/ngStorage.min.js',
+      'lib/ui-bootstrap-tpls-0.11.0.js',
       'js/*.js',
       'js/*.tests.js'
     ],
