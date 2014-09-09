@@ -390,10 +390,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
 
-  $scope.$watch ("$storage.cryptext", function() {
+  $scope.$watch ("$storage.cryptext", function(oldV, newV) {
     $scope.freq = {};
     $scope.words = {};
-    $scope.$storage.key = {};
+    if (oldV != newV) {
+      $scope.$storage.key = {};
+    }
     $scope.$storage.cryptext = $scope.$storage.cryptext.toUpperCase();
 
     angular.forEach($scope.$storage.cryptext, function(c) {
@@ -600,8 +602,5 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
 
     doubled: [ "S", "E", "T", "F", "L", "M", "O" ],
-
-    contractions: [
-    ]
   };
 }]);
