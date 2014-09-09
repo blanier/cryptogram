@@ -1,11 +1,6 @@
 
 ### Active
 - [ ] scrape http://www.brainyquote.com/
-- [ ] looks like there's a tabIndex bug.  Sometimes, the wrong div's have tabIndex=0. Explore.
-      - seems to only happen after "next puzzle" from main UI or "->" from admin panel
-      - refresh fixes it
-      - transition through an empty cryptext "fixes" it
-      - link function isn't called for all nodes
 - [ ] "it is always one's virtues and not one's vices that precipitate one into disaster" auto-completes incorrectly
 - [ ] Duplicate puzzles are being presented
 - [ ] key not getting cleared out on "Next Puzzle"
@@ -85,3 +80,9 @@
 - [x] remove suggestion limit support/address perf issue thus created
 - [x] word ending in ! allows! into word
 - [x] setup gh-pages branch
+- [x] looks like there's a tabIndex bug.  Sometimes, the wrong div's have tabIndex=0. Explore.
+      - seems to only happen after "next puzzle" from main UI or "->" from admin panel
+      - refresh fixes it
+      - transition through an empty cryptext "fixes" it
+      - link function isn't called for all nodes
+      - lat the digest cycle complete before setting cryptext to final value

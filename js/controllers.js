@@ -122,9 +122,10 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
                                     '$localStorage',
                                     '$location',
                                     '$interval',
+                                    '$timeout',
                                     'suggestions',
                                     function ($scope, $http, $window, $localStorage,
-                                              $location, $interval, suggestions) {
+                                              $location, $interval, $timeout, suggestions) {
 
   $scope.storageDefaults = {
     cryptext: "",
@@ -310,11 +311,12 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   };
 
   $scope.force_cryptext_from_clear = function(clear) {
+    $scope.$storage.cryptext = "";
     $scope.$storage.key = {};
     $scope.$storage.moves = [];
     $scope.highlights = "";
     $scope.$storage.clear = clear;
-    $scope.$storage.cryptext = $scope.scramble(clear);
+    $timeout(function() {$scope.$storage.cryptext = $scope.scramble(clear);}, 1);
   }
 
   $scope.undo_invalid = function(i) {
