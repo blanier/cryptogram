@@ -142,6 +142,9 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.total_chars = 0;
   $scope.freq = {};
   $scope.words = {};
+  $scope.pending_slurps = [];
+  $scope.pages = {};
+  $scope.highlights = "";
 
   $scope.set_key = function( k, v ) {
     // make sure bogus keys never get in
@@ -241,8 +244,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.loading = function() {
     return $scope.$storage.cryptext == "";
   }
-
-  $scope.pending_slurps = [];
 
   $scope.slurp = function(url) {
 
@@ -449,8 +450,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
     });
   };
 
-  $scope.pages = {};
-
   $scope.page_changed = function(arg) {
     var page = $scope.pages[arg].current_page - 1;
     var count = $scope.pages[arg].items_per_page;
@@ -482,8 +481,6 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
   $scope.word_is_not_solved = function(w) {
     return !$scope.word_is_solved(w);
   }
-
-  $scope.highlights = "";
 
   $scope.is_highlighted = function(c) {
     return $scope.highlights.indexOf(c) >= 0;
@@ -606,6 +603,5 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
     contractions: [
     ]
-
   };
 }]);
