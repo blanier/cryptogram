@@ -502,7 +502,7 @@ cryptoApp.controller('CryptoCtrl', ['$scope',
 
   // force a puzzle to load, and poll for updates
   $scope.push_slurps();
-  $scope.intervalPromise = $interval($scope.push_slurps, 4*60*60*1000);
+  $scope.intervalPromise = $interval($scope.push_slurps, 1*60*60*1000);
   $scope.$on('$destroy', function () { $interval.cancel(intervalPromise); });
 
   $scope.$on('$locationChangeSuccess', function(event) {
