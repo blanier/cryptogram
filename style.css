@@ -1,4 +1,7 @@
-body {font-family: monospace;}
+body {
+  font-family: monospace;
+  margin: 1em;
+}
 
 
 #controls {
