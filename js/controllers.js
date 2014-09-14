@@ -60,7 +60,6 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
     var v = [];
     angular.forEach(key, function(val) { val && v.push(val) });
 
-    //var matches = words.reduce( function(prev, cur) {
     var matches = (words_by_length[l] || []).reduce( function(prev, cur) {
       var m = cur.match(re);
 
@@ -86,7 +85,6 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
       });
 
       if (/[^_']/.test(common)) {
-        console.log("--",cryptext,"--",common);
         matches.push(common);
       }
     }

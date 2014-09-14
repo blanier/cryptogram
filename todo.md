@@ -2,6 +2,8 @@
 ### Active
 - [ ] scrape http://www.brainyquote.com/
 - [ ] more aggressive mulit-pass solving with backtracking
+- [ ] wrap words in a div so that line break works as expected.
+- [ ] eliminate word choices where clear char == key char
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
