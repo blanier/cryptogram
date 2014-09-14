@@ -57,16 +57,20 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
     var re = new RegExp("^" + re_string + "$");
 
     // Scan words for matches
-    var v = [];
+    var v = [];  // in v, we will hold every clear char, so if X stands for F, then v will have F in it
     angular.forEach(key, function(val) { val && v.push(val) });
 
     var matches = (words_by_length[l] || []).reduce( function(prev, cur) {
       var m = cur.match(re);
 
-      if (m && m.shift() &&
+      if (m && m.shift() && // if there was a match, drop the 0-th element, as it's the whole word
+          // and make sure that each letter appears only once (because of the backreferences)
           m.every(function(val, i, array) { return array.lastIndexOf(val) == i; }) &&
-          m.every(function(val) { return v.indexOf(val) == -1 })
-         ) {
+          // and isn't an already solved character
+          m.every(function(val) { return v.indexOf(val) == -1 })  &&
+          // and doesn't have anywhere where clear-char == crypt-char
+          cur.split("").every(function(val, i) { return val != cryptext[i] })
+          ) {
         prev.push(cur);
       }
       return prev;
