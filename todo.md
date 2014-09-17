@@ -1,9 +1,9 @@
 
 ### Active
 - [ ] scrape http://www.brainyquote.com/
-- [ ] more aggressive mulit-pass solving with backtracking
+- [ ] more aggressive mulit-pass solving with backtracking(Jacques Louvet super-duper cheater mode)
 - [ ] wrap words in a div so that line break works as expected.
-- [ ] eliminate word choices where clear char == key char
+- [ ] need some tests for suggestions module
 
 ### observe
 - [ ] explore odd character in today's dump ' --- looks like it was present all the way back to the XML.  wait for more.
@@ -89,3 +89,4 @@
       - lat the digest cycle complete before setting cryptext to final value
 - [x] "it is always one's virtues and not one's vices that precipitate one into disaster" auto-completes incorrectly - no it didn't - it was a byproduct of the key not getting cleared bug
 - [x] key not getting cleared out on "Next Puzzle" - fixed
+- [x] eliminate word choices where clear char == key char

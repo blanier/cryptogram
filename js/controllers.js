@@ -29,7 +29,7 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
     var captured_count = 1; // because backreferences are 1-based
     var l = cryptext.length;
 
-    // Makre RE from cryptext
+    // Make RE from cryptext
     var re_string = cryptext.split("").reduce(function(prev, cur) {
 
       // If we know the letter (from the key), just look for it explicitly (and don't capture it)
@@ -69,7 +69,7 @@ cryptoApp.factory('suggestions', ['$http', '$rootScope', function($http, $rootSc
           // and isn't an already solved character
           m.every(function(val) { return v.indexOf(val) == -1 })  &&
           // and doesn't have anywhere where clear-char == crypt-char
-          cur.split("").every(function(val, i) { return val != cryptext[i] })
+          cur.split("").every(function(val, i) { return val=="'" || val != cryptext[i] })
           ) {
         prev.push(cur);
       }
